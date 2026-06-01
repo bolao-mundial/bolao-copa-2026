@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolão Copa do Mundo 2026</title>
+<meta name="description" content="Preencha seus palpites para os 72 jogos da fase de grupos da Copa do Mundo 2026!">
+<meta property="og:title" content="⚽ Bolão Copa do Mundo 2026">
+<meta property="og:description" content="Preencha seus palpites para os 72 jogos da fase de grupos. Clique e participe!">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/FIFA_World_Cup_2026.svg/800px-FIFA_World_Cup_2026.svg.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1a6b3c">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #1a6b3c;
+  --verde-claro: #2d9b57;
+  --verde-bg: #e8f5ee;
+  --dourado: #c9a84c;
+  --dourado-claro: #f0c94a;
+  --cinza: #f4f4f2;
+  --cinza-borda: #ddddd8;
+  --cinza-texto: #6b6b65;
+  --preto: #1a1a18;
+  --branco: #ffffff;
+  --radius: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: #f0f0ec;
+  color: var(--preto);
+  min-height: 100vh;
+}
+
+/* HERO */
+.hero {
+  background: var(--verde);
+  color: var(--branco);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    60deg,
+    transparent,
+    transparent 28px,
+    rgba(255,255,255,0.03) 28px,
+    rgba(255,255,255,0.03) 30px
+  );
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--dourado);
+  color: var(--preto);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: .75rem;
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(28px, 7vw, 46px);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.1;
+  margin-bottom: .5rem;
+}
+.hero h1 span { color: var(--dourado-claro); }
+.hero p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* PROGRESSO */
+.progress-bar-wrap {
+  background: var(--branco);
+  border-bottom: 1px solid var(--cinza-borda);
+  padding: .75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--cinza);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--verde), var(--verde-claro));
+  border-radius: 10px;
+  transition: width .3s ease;
+  width: 0%;
+}
+.progress-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cinza-texto);
+  white-space: nowrap;
+  min-width: 90px;
+  text-align: right;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* CARD */
+.card {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--verde);
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1.5px solid var(--verde-bg);
+}
+
+/* IDENTIFICAÇÃO */
+.id-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(max-width:480px){ .id-grid { grid-template-columns: 1fr; } }
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cinza-texto);
+  margin-bottom: 5px;
+  letter-spacing: .03em;
+}
+.field input[type=text] {
+  width: 100%;
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  color: var(--preto);
+  background: var(--cinza);
+  transition: border-color .15s, background .15s;
+  outline: none;
+}
+.field input[type=text]:focus {
+  border-color: var(--verde);
+  background: var(--branco);
+  box-shadow: 0 0 0 3px rgba(26,107,60,.1);
+}
+
+/* RODADA */
+.rodada-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: .75rem;
+  padding-bottom: .5rem;
+  border-bottom: 1.5px solid var(--verde-bg);
+}
+.rodada-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+
+/* JOGO */
+.jogo {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--cinza);
+}
+.jogo:last-child { border-bottom: none; }
+.jogo-meta {
+  font-size: 11px;
+  color: var(--cinza-texto);
+  margin-bottom: 5px;
+  letter-spacing: .02em;
+}
+.jogo-placar {
+  display: grid;
+  grid-template-columns: 1fr 48px 20px 48px 1fr;
+  align-items: center;
+  gap: 6px;
+}
+.time-nome {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--preto);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.time-nome.right { text-align: right; }
+.gol-input {
+  width: 48px;
+  height: 40px;
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--radius);
+  background: var(--cinza);
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--preto);
+  outline: none;
+  transition: border-color .15s, background .15s;
+  -moz-appearance: textfield;
+}
+.gol-input::-webkit-inner-spin-button,
+.gol-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.gol-input:focus {
+  border-color: var(--verde);
+  background: var(--branco);
+  box-shadow: 0 0 0 3px rgba(26,107,60,.12);
+}
+.gol-input.preenchido {
+  border-color: var(--verde-claro);
+  background: var(--verde-bg);
+  color: var(--verde);
+}
+.vsep {
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cinza-borda);
+}
+
+/* BOTÕES */
+.btn-area {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-exportar {
+  width: 100%;
+  padding: 14px;
+  background: var(--verde);
+  color: var(--branco);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn-exportar:hover { background: var(--verde-claro); }
+.btn-exportar:active { transform: scale(.99); }
+.btn-limpar {
+  width: 100%;
+  padding: 11px;
+  background: transparent;
+  color: var(--cinza-texto);
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--radius);
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-limpar:hover { background: var(--cinza); }
+
+/* MENSAGENS */
+.msg {
+  display: none;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.msg.ok {
+  background: var(--verde-bg);
+  color: var(--verde);
+  border: 1px solid #a8d8ba;
+}
+.msg.err {
+  background: #fdecea;
+  color: #b71c1c;
+  border: 1px solid #f5c6c2;
+}
+
+/* RODAPÉ */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--cinza-texto);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cinza-borda);
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">⚽ Copa do Mundo 2026</div>
+  <h1>Bolão <span>Copa 2026</span></h1>
+  <p>Preencha seus palpites para os 72 jogos da fase de grupos. Você pode preencher por etapas — salve e reenvie quando quiser. Informe o placar ao final do tempo regulamentar, sem prorrogação ou pênaltis.</p>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-text" id="progress-text">0 / 72 jogos</div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-title">Identificação</div>
+    <div class="id-grid">
+      <div class="field">
+        <label for="nome_completo">Nome completo *</label>
+        <input type="text" id="nome_completo" placeholder="Seu nome completo" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="nome_ranking">Nome para o ranking *</label>
+        <input type="text" id="nome_ranking" placeholder="Como aparecer no ranking">
+      </div>
+    </div>
+  </div>
+
+  <div id="jogos-wrap"></div>
+
+  <div class="btn-area">
+    <button class="btn-exportar" onclick="exportar()">⬇ Baixar meus palpites (CSV)</button>
+    <button class="btn-limpar" onclick="limpar()">Limpar todos os campos</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <div class="footer">
+    Bolão Copa do Mundo 2026 &mdash; Fase de Grupos &mdash; 72 partidas<br>
+    Preencha à vontade — por etapas ou tudo de uma vez. Clique em "Baixar" para gerar o arquivo e enviar ao organizador.
+  </div>
+
+</div>
+
+<script>
+const jogos = [
+  [1,"A","11/06/2026","16:00","México","África do Sul"],
+  [2,"A","11/06/2026","23:00","Coréia do Sul","Tchéquia"],
+  [3,"B","12/06/2026","16:00","Canadá","Bósnia e Herzegovina"],
+  [4,"D","12/06/2026","22:00","Estados Unidos","Paraguai"],
+  [5,"B","13/06/2026","16:00","Catar","Suíça"],
+  [6,"C","13/06/2026","19:00","Brasil","Marrocos"],
+  [7,"C","13/06/2026","22:00","Haiti","Escócia"],
+  [8,"D","14/06/2026","01:00","Austrália","Turquia"],
+  [9,"E","14/06/2026","14:00","Alemanha","Curaçao"],
+  [10,"F","14/06/2026","17:00","Holanda","Japão"],
+  [11,"E","14/06/2026","20:00","Costa do Marfim","Equador"],
+  [12,"F","14/06/2026","23:00","Suécia","Tunísia"],
+  [13,"H","15/06/2026","13:00","Espanha","Cabo Verde"],
+  [14,"G","15/06/2026","16:00","Bélgica","Egito"],
+  [15,"H","15/06/2026","19:00","Arábia Saudita","Uruguai"],
+  [16,"G","15/06/2026","22:00","Irã","Nova Zelândia"],
+  [17,"I","16/06/2026","16:00","França","Senegal"],
+  [18,"I","16/06/2026","19:00","Iraque","Noruega"],
+  [19,"J","16/06/2026","22:00","Argentina","Argélia"],
+  [20,"J","17/06/2026","01:00","Áustria","Jordânia"],
+  [21,"K","17/06/2026","14:00","Portugal","República do Congo"],
+  [22,"L","17/06/2026","17:00","Inglaterra","Croácia"],
+  [23,"L","17/06/2026","20:00","Gana","Panamá"],
+  [24,"K","17/06/2026","23:00","Uzbequistão","Colômbia"],
+  [25,"A","18/06/2026","13:00","Tchéquia","África do Sul"],
+  [26,"B","18/06/2026","16:00","Suíça","Bósnia e Herzegovina"],
+  [27,"B","18/06/2026","19:00","Canadá","Catar"],
+  [28,"A","18/06/2026","22:00","México","Coréia do Sul"],
+  [29,"D","19/06/2026","16:00","Estados Unidos","Austrália"],
+  [30,"C","19/06/2026","19:00","Escócia","Marrocos"],
+  [31,"C","19/06/2026","21:30","Brasil","Haiti"],
+  [32,"D","20/06/2026","00:00","Turquia","Paraguai"],
+  [33,"F","20/06/2026","14:00","Holanda","Suécia"],
+  [34,"E","20/06/2026","17:00","Alemanha","Costa do Marfim"],
+  [35,"E","20/06/2026","21:00","Equador","Curaçao"],
+  [36,"F","21/06/2026","01:00","Tunísia","Japão"],
+  [37,"H","21/06/2026","13:00","Espanha","Arábia Saudita"],
+  [38,"G","21/06/2026","16:00","Bélgica","Irã"],
+  [39,"H","21/06/2026","19:00","Uruguai","Cabo Verde"],
+  [40,"G","21/06/2026","22:00","Nova Zelândia","Egito"],
+  [41,"J","22/06/2026","14:00","Argentina","Áustria"],
+  [42,"I","22/06/2026","18:00","França","Iraque"],
+  [43,"I","22/06/2026","21:00","Noruega","Senegal"],
+  [44,"J","23/06/2026","00:00","Jordânia","Argélia"],
+  [45,"K","23/06/2026","14:00","Portugal","Uzbequistão"],
+  [46,"L","23/06/2026","17:00","Inglaterra","Gana"],
+  [47,"L","23/06/2026","20:00","Panamá","Croácia"],
+  [48,"K","23/06/2026","23:00","Colômbia","República do Congo"],
+  [49,"B","24/06/2026","16:00","Suíça","Canadá"],
+  [50,"B","24/06/2026","16:00","Bósnia e Herzegovina","Catar"],
+  [51,"C","24/06/2026","19:00","Escócia","Brasil"],
+  [52,"C","24/06/2026","19:00","Marrocos","Haiti"],
+  [53,"A","24/06/2026","22:00","Tchéquia","México"],
+  [54,"A","24/06/2026","22:00","África do Sul","Coréia do Sul"],
+  [55,"E","25/06/2026","17:00","Curaçao","Costa do Marfim"],
+  [56,"E","25/06/2026","17:00","Equador","Alemanha"],
+  [57,"F","25/06/2026","20:00","Japão","Suécia"],
+  [58,"F","25/06/2026","20:00","Tunísia","Holanda"],
+  [59,"D","25/06/2026","23:00","Turquia","Estados Unidos"],
+  [60,"D","25/06/2026","23:00","Paraguai","Austrália"],
+  [61,"I","26/06/2026","16:00","Noruega","França"],
+  [62,"I","26/06/2026","16:00","Senegal","Iraque"],
+  [63,"H","26/06/2026","21:00","Cabo Verde","Arábia Saudita"],
+  [64,"H","26/06/2026","21:00","Uruguai","Espanha"],
+  [65,"G","27/06/2026","00:00","Egito","Irã"],
+  [66,"G","27/06/2026","00:00","Nova Zelândia","Bélgica"],
+  [67,"L","27/06/2026","18:00","Panamá","Inglaterra"],
+  [68,"L","27/06/2026","18:00","Croácia","Gana"],
+  [69,"K","27/06/2026","20:30","Colômbia","Portugal"],
+  [70,"K","27/06/2026","20:30","República do Congo","Uzbequistão"],
+  [71,"J","27/06/2026","23:00","Argélia","Áustria"],
+  [72,"J","27/06/2026","23:00","Jordânia","Argentina"]
+];
+
+const rodadas = [
+  { label: "Rodada 1 — J1 a J24", inicio: 1, fim: 24 },
+  { label: "Rodada 2 — J25 a J48", inicio: 25, fim: 48 },
+  { label: "Rodada 3 — J49 a J72", inicio: 49, fim: 72 }
+];
+
+function build() {
+  const wrap = document.getElementById('jogos-wrap');
+  rodadas.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<div class="rodada-header"><span class="rodada-tag">${r.label}</span></div>`;
+    jogos.filter(j => j[0] >= r.inicio && j[0] <= r.fim).forEach(j => {
+      const div = document.createElement('div');
+      div.className = 'jogo';
+      div.innerHTML = `
+        <div class="jogo-meta">J${j[0]} &middot; Grupo ${j[1]} &middot; ${j[2]} &middot; ${j[3]}</div>
+        <div class="jogo-placar">
+          <span class="time-nome">${j[4]}</span>
+          <input type="number" class="gol-input" id="g${j[0]}a" min="0" step="1" placeholder="–" aria-label="Gols ${j[4]}">
+          <span class="vsep">x</span>
+          <input type="number" class="gol-input" id="g${j[0]}b" min="0" step="1" placeholder="–" aria-label="Gols ${j[5]}">
+          <span class="time-nome right">${j[5]}</span>
+        </div>`;
+      card.appendChild(div);
+    });
+    wrap.appendChild(card);
+  });
+
+  document.getElementById('jogos-wrap').addEventListener('input', e => {
+    if (e.target.classList.contains('gol-input')) {
+      e.target.classList.toggle('preenchido', e.target.value !== '');
+      atualizarProgresso();
+    }
+  });
+  atualizarProgresso();
+}
+
+function atualizarProgresso() {
+  let ok = 0;
+  jogos.forEach(j => {
+    const a = document.getElementById('g' + j[0] + 'a');
+    const b = document.getElementById('g' + j[0] + 'b');
+    if (a && a.value !== '' && b && b.value !== '') ok++;
+  });
+  document.getElementById('progress-fill').style.width = Math.round((ok / 72) * 100) + '%';
+  document.getElementById('progress-text').textContent = ok + ' / 72 jogos';
+}
+
+function exportar() {
+  const nome = document.getElementById('nome_completo').value.trim();
+  const ranking = document.getElementById('nome_ranking').value.trim();
+  const msg = document.getElementById('msg');
+
+  if (!nome || !ranking) {
+    mostrarMsg('err', 'Preencha o nome completo e o nome para o ranking antes de baixar.');
+    return;
+  }
+
+  let preenchidos = 0;
+  jogos.forEach(j => {
+    const a = document.getElementById('g' + j[0] + 'a');
+    const b = document.getElementById('g' + j[0] + 'b');
+    if (a && a.value !== '' && b && b.value !== '') preenchidos++;
+  });
+
+  if (preenchidos === 0) {
+    mostrarMsg('err', 'Preencha ao menos um jogo antes de baixar.');
+    return;
+  }
+
+  const cabecalho = ['Nome Completo', 'Nome Ranking'];
+  jogos.forEach(j => {
+    cabecalho.push('J' + j[0] + '_' + j[4].replace(/,/g, ''));
+    cabecalho.push('J' + j[0] + '_' + j[5].replace(/,/g, ''));
+  });
+
+  const linha = ['"' + nome + '"', '"' + ranking + '"'];
+  jogos.forEach(j => {
+    const va = document.getElementById('g' + j[0] + 'a');
+    const vb = document.getElementById('g' + j[0] + 'b');
+    linha.push(va ? va.value : '');
+    linha.push(vb ? vb.value : '');
+  });
+
+  const csv = '\uFEFF' + cabecalho.join(';') + '\n' + linha.join(';');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'palpites_' + nome.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '') + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  mostrarMsg('ok', '✓ Arquivo gerado com sucesso com ' + preenchidos + ' jogo(s) preenchido(s)! Envie o CSV ao organizador. Você pode preencher mais jogos e baixar novamente quando quiser.');
+}
+
+function limpar() {
+  if (!confirm('Deseja apagar todos os palpites preenchidos?')) return;
+  document.getElementById('nome_completo').value = '';
+  document.getElementById('nome_ranking').value = '';
+  jogos.forEach(j => {
+    const a = document.getElementById('g' + j[0] + 'a');
+    const b = document.getElementById('g' + j[0] + 'b');
+    if (a) { a.value = ''; a.classList.remove('preenchido'); }
+    if (b) { b.value = ''; b.classList.remove('preenchido'); }
+  });
+  document.getElementById('msg').style.display = 'none';
+  atualizarProgresso();
+}
+
+function mostrarMsg(tipo, texto) {
+  const el = document.getElementById('msg');
+  el.className = 'msg ' + tipo;
+  el.textContent = texto;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+build();
+</script>
+</body>
+</html>
