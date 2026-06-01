@@ -338,7 +338,7 @@ body {
 <div class="hero">
   <div class="hero-badge">⚽ Copa do Mundo 2026</div>
   <h1>Bolão <span>Copa 2026</span></h1>
-  <p>Preencha seus palpites para os 72 jogos da fase de grupos. Você pode preencher por etapas — salve e reenvie quando quiser. Informe o placar ao final do tempo regulamentar, sem prorrogação ou pênaltis.</p>
+  <p>Preencha seus palpites para os 72 jogos da fase de grupos. Seus palpites são salvos automaticamente no seu dispositivo. Preencha por etapas — feche, volte quando quiser e continue de onde parou. Informe o placar ao final do tempo regulamentar, sem prorrogação ou pênaltis.</p>
 </div>
 
 <div class="progress-bar-wrap">
@@ -374,7 +374,7 @@ body {
 
   <div class="footer">
     Bolão Copa do Mundo 2026 &mdash; Fase de Grupos &mdash; 72 partidas<br>
-    Preencha à vontade — por etapas ou tudo de uma vez. Clique em "Baixar" para gerar o arquivo e enviar ao organizador.
+    Seus palpites são salvos automaticamente neste dispositivo. Volte quando quiser e continue de onde parou.
   </div>
 
 </div>
@@ -488,9 +488,49 @@ function build() {
     if (e.target.classList.contains('gol-input')) {
       e.target.classList.toggle('preenchido', e.target.value !== '');
       atualizarProgresso();
+      salvarLocal();
     }
   });
+  document.getElementById('nome_completo').addEventListener('input', salvarLocal);
+  document.getElementById('nome_ranking').addEventListener('input', salvarLocal);
+  carregarLocal();
   atualizarProgresso();
+}
+
+function salvarLocal() {
+  try {
+    const dados = {
+      nome: document.getElementById('nome_completo').value,
+      ranking: document.getElementById('nome_ranking').value,
+      palpites: {}
+    };
+    jogos.forEach(j => {
+      const a = document.getElementById('g' + j[0] + 'a');
+      const b = document.getElementById('g' + j[0] + 'b');
+      dados.palpites[j[0]] = { a: a ? a.value : '', b: b ? b.value : '' };
+    });
+    localStorage.setItem('bolao2026', JSON.stringify(dados));
+  } catch(e) {}
+}
+
+function carregarLocal() {
+  try {
+    const raw = localStorage.getItem('bolao2026');
+    if (!raw) return;
+    const dados = JSON.parse(raw);
+    if (dados.nome) document.getElementById('nome_completo').value = dados.nome;
+    if (dados.ranking) document.getElementById('nome_ranking').value = dados.ranking;
+    if (dados.palpites) {
+      jogos.forEach(j => {
+        const p = dados.palpites[j[0]];
+        if (!p) return;
+        const a = document.getElementById('g' + j[0] + 'a');
+        const b = document.getElementById('g' + j[0] + 'b');
+        if (a && p.a !== '') { a.value = p.a; a.classList.add('preenchido'); }
+        if (b && p.b !== '') { b.value = p.b; b.classList.add('preenchido'); }
+      });
+    }
+  } catch(e) {}
 }
 
 function atualizarProgresso() {
@@ -564,6 +604,7 @@ function limpar() {
     if (a) { a.value = ''; a.classList.remove('preenchido'); }
     if (b) { b.value = ''; b.classList.remove('preenchido'); }
   });
+  try { localStorage.removeItem('bolao2026'); } catch(e) {}
   document.getElementById('msg').style.display = 'none';
   atualizarProgresso();
 }
