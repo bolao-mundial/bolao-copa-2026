@@ -460,7 +460,7 @@ body {
 <div class="hero">
   <div class="hero-badge">⚽ Copa do Mundo 2026</div>
   <h1>Bolão <span>Copa 2026</span></h1>
-  <p>Preencha seus palpites para os 72 jogos da fase de grupos. Seus palpites são salvos automaticamente no seu dispositivo. Preencha por etapas — feche, volte quando quiser e continue de onde parou. Informe o placar ao final do tempo regulamentar, sem prorrogação ou pênaltis.</p>
+  <p>Preencha seus palpites para os 72 jogos Sua jornada no Bolão Copa 2026 começa aqui! 🏆 Dê seus palpites para os 72 jogos da primeira fase como preferir: tudo de uma vez ou por rodadas. Suas alterações são salvas automaticamente no navegador do seu dispositivo para você continuar quando quiser. Só não esqueça: sempre que terminar de preencher uma rodada (ou a tabela toda), baixe o arquivo CSV e envie para a organização!</p>
 </div>
 
 <div class="progress-bar-wrap">
@@ -885,6 +885,21 @@ function updateSelectFlag(sel) {
     flag.style.display = 'none';
     sel.classList.remove('has-flag');
   }
+  bloquearDuplicados();
+}
+
+function bloquearDuplicados() {
+  const ids = ['semi1','semi2','semi3','semi4'];
+  const valores = ids.map(id => document.getElementById(id).value);
+  ids.forEach((id, i) => {
+    const sel = document.getElementById(id);
+    const valorAtual = valores[i];
+    Array.from(sel.options).forEach(opt => {
+      if (opt.value === '') return; // manter placeholder sempre disponível
+      const escolhidoPorOutro = valores.some((v, j) => j !== i && v === opt.value);
+      opt.disabled = escolhidoPorOutro;
+    });
+  });
 }
 
 function build() {
@@ -976,6 +991,7 @@ function carregarLocal() {
           updateSelectFlag(sel);
         }
       });
+      bloquearDuplicados();
     }
   } catch(e) {}
 }
