@@ -23,10 +23,15 @@ function doPost(e) {
     var dados = JSON.parse(dadosStr);
 
     if (sheet.getLastRow() == 0 && dados.cabecalho) {
-      sheet.appendRow(dados.cabecalho);
+      var cabecalhoComTimestamp = ['Data', 'Horário'].concat(dados.cabecalho);
+      sheet.appendRow(cabecalhoComTimestamp);
     }
 
-    sheet.appendRow(dados.valores);
+    var agora = new Date();
+    var data = Utilities.formatDate(agora, 'America/Sao_Paulo', 'dd/MM/yyyy');
+    var horario = Utilities.formatDate(agora, 'America/Sao_Paulo', 'HH:mm:ss');
+    var valoresComTimestamp = [data, horario].concat(dados.valores);
+    sheet.appendRow(valoresComTimestamp);
     return ContentService.createTextOutput('ok');
   } catch(err) {
     sheet.appendRow(['ERRO', err.toString(), new Date().toString()]);
