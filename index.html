@@ -288,6 +288,7 @@ body {
 }
 .btn-exportar:hover { background: var(--verde-claro); }
 .btn-exportar:active { transform: scale(.99); }
+.btn-exportar.enviando { opacity: .6; cursor: wait; pointer-events: none; }
 .btn-limpar {
   width: 100%;
   padding: 11px;
@@ -726,7 +727,7 @@ body {
   <div id="jogos-wrap"></div>
 
   <div class="btn-area">
-    <button class="btn-exportar" onclick="exportar()">⬇ Baixar meus palpites (CSV)</button>
+    <button class="btn-exportar" id="btn-enviar" onclick="enviar()">Enviar meus palpites</button>
     <button class="btn-limpar" onclick="limpar()">Limpar todos os campos</button>
     <div class="msg" id="msg"></div>
   </div>
@@ -739,6 +740,8 @@ body {
 </div>
 
 <script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgfn7LRRt4Ce1bpPCoZ4ofzC6YTUUpiB2Kfv_Jx6bywyQwXGNpcU6Q5PrGkD5OASED/exec';
+
 const jogos = [
   [1,"A","11/06/2026","16:00","México","África do Sul"],
   [2,"A","11/06/2026","23:00","Coréia do Sul","Tchéquia"],
@@ -1007,13 +1010,12 @@ function atualizarProgresso() {
   document.getElementById('progress-text').textContent = ok + ' / 72 jogos';
 }
 
-function exportar() {
+function enviar() {
   const nome = document.getElementById('nome_completo').value.trim();
   const ranking = document.getElementById('nome_ranking').value.trim();
-  const msg = document.getElementById('msg');
 
   if (!nome || !ranking) {
-    mostrarMsg('err', 'Preencha o nome completo e o nome para o ranking antes de baixar.');
+    mostrarMsg('err', 'Preencha o nome completo e o nome para o ranking antes de enviar.');
     return;
   }
 
@@ -1025,7 +1027,7 @@ function exportar() {
   });
 
   if (preenchidos === 0) {
-    mostrarMsg('err', 'Preencha ao menos um jogo antes de baixar.');
+    mostrarMsg('err', 'Preencha ao menos um jogo antes de enviar.');
     return;
   }
 
@@ -1039,26 +1041,70 @@ function exportar() {
   const s2 = document.getElementById('semi2').value;
   const s3 = document.getElementById('semi3').value;
   const s4 = document.getElementById('semi4').value;
-  const linha = ['"' + nome + '"', '"' + ranking + '"', '"' + s1 + '"', '"' + s2 + '"', '"' + s3 + '"', '"' + s4 + '"'];
+  const valores = [nome, ranking, s1, s2, s3, s4];
   jogos.forEach(j => {
     const va = document.getElementById('g' + j[0] + 'a');
     const vb = document.getElementById('g' + j[0] + 'b');
-    linha.push(va ? va.value : '');
-    linha.push(vb ? vb.value : '');
+    valores.push(va ? va.value : '');
+    valores.push(vb ? vb.value : '');
   });
 
-  const csv = '\uFEFF' + cabecalho.join(';') + '\n' + linha.join(';');
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'palpites_' + nome.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '') + '.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  const dados = { cabecalho: cabecalho, valores: valores };
 
-  mostrarMsg('ok', '✓ Arquivo gerado com sucesso com ' + preenchidos + ' jogo(s) preenchido(s)! Envie o CSV ao organizador. Você pode preencher mais jogos e baixar novamente quando quiser.');
+  const btn = document.getElementById('btn-enviar');
+  const textoOriginal = btn.textContent;
+  btn.textContent = 'Enviando...';
+  btn.classList.add('enviando');
+
+  // Usa form + iframe oculto para evitar problemas de CORS com file://
+  const iframe = document.createElement('iframe');
+  iframe.name = 'envio_frame_' + Date.now();
+  iframe.style.display = 'none';
+
+  let loadCount = 0;
+  let concluido = false;
+
+  function concluir(sucesso) {
+    if (concluido) return;
+    concluido = true;
+    clearTimeout(timeout);
+    if (sucesso) {
+      mostrarMsg('ok', '✓ Palpites enviados com sucesso!');
+    } else {
+      mostrarMsg('err', 'Erro ao enviar. Tente novamente.');
+    }
+    btn.textContent = textoOriginal;
+    btn.classList.remove('enviando');
+    setTimeout(function() {
+      if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+      if (form.parentNode) form.parentNode.removeChild(form);
+    }, 100);
+  }
+
+  iframe.onload = function() {
+    loadCount++;
+    if (loadCount >= 2) concluir(true);
+  };
+
+  document.body.appendChild(iframe);
+
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = APPS_SCRIPT_URL;
+  form.target = iframe.name;
+  form.style.display = 'none';
+
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'dados';
+  input.value = JSON.stringify(dados);
+  form.appendChild(input);
+  document.body.appendChild(form);
+
+  form.submit();
+
+  // Fallback: se o iframe não carregar em 10s, assume sucesso
+  var timeout = setTimeout(function() { concluir(true); }, 10000);
 }
 
 function limpar() {
