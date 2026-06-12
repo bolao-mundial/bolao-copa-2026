@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1a6b3c">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
-<style>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=nUZeQlGqFtluVSW1Wr8EdWy9pAxbLN7vl5jnTzQoW0Ed3o6Vog7bAw56wylmyYLF22xGgjPMhA4kGvhDmqzy8p-tQO4tY5Ts1rNYUEOp6CtyJwbB98XoTu6_4g8NI71FmkHXh-mMqnhPnIqHV-I79hTILo8WEBuAc10XvyFDCQzxvNYzIigUXaZzSrR1J4cblnUZ5IraOWUdwrZMziM2A8MJV5FMFOQ-sU2nbtU-KaTFeFgJeel8_5WBjEsbfL7oEcIH3ipb5o2zY6nWN8pIe89bPeYQLdue_YZw1mnubFsQe8PlGjk4ORHQt95TeWFkc9kcBVbemn2la2FhfTg0YtFrTMXPwlvHJi2Q4eIFv9s" charset="UTF-8"></script><style>
 :root {
   --verde: #1a6b3c;
   --verde-claro: #2d9b57;
@@ -208,6 +208,26 @@ body {
   border-bottom: 1px solid var(--cinza);
 }
 .jogo:last-child { border-bottom: none; }
+.jogo-bloqueado {
+  opacity: .72;
+}
+.jogo-bloqueado .gol-input {
+  cursor: not-allowed;
+  background: #eeeeea;
+  color: var(--cinza-texto);
+}
+.jogo-status {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: var(--cinza);
+  color: var(--cinza-texto);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
 .jogo-meta {
   font-size: 11px;
   color: var(--cinza-texto);
@@ -288,7 +308,6 @@ body {
 }
 .btn-exportar:hover { background: var(--verde-claro); }
 .btn-exportar:active { transform: scale(.99); }
-.btn-exportar.enviando { opacity: .6; cursor: wait; pointer-events: none; }
 .btn-limpar {
   width: 100%;
   padding: 11px;
@@ -359,101 +378,6 @@ body {
   font-size: 10px;
   letter-spacing: .04em;
 }
-
-/* PROFECIA */
-.profecia-card {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border: 1px solid #c9a84c;
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 20px rgba(201,168,76,0.15);
-}
-.profecia-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--dourado-claro);
-  margin-bottom: .5rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.profecia-desc {
-  font-size: 12px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-.profecia-pontos {
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-.profecia-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-@media(max-width:480px){ .profecia-grid { grid-template-columns: 1fr; } }
-.profecia-field label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 5px;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-}
-.profecia-select {
-  width: 100%;
-  border: 1px solid rgba(201,168,76,0.4);
-  border-radius: var(--radius);
-  padding: 9px 12px;
-  font-family: 'Barlow', sans-serif;
-  font-size: 13px;
-  color: var(--branco);
-  background: rgba(255,255,255,0.08);
-  outline: none;
-  cursor: pointer;
-  transition: border-color .15s;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
-  padding-right: 32px;
-}
-.profecia-select:focus {
-  border-color: var(--dourado);
-  background-color: rgba(255,255,255,0.12);
-}
-.profecia-select option {
-  background: #1a1a2e;
-  color: var(--branco);
-}
-.select-with-flag {
-  position: relative;
-}
-.select-flag-preview {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 14px;
-  object-fit: cover;
-  border-radius: 2px;
-  border: 0.5px solid rgba(255,255,255,0.2);
-  pointer-events: none;
-}
-.profecia-select.has-flag {
-  padding-left: 38px;
-}
 </style>
 </head>
 <body>
@@ -461,7 +385,7 @@ body {
 <div class="hero">
   <div class="hero-badge">⚽ Copa do Mundo 2026</div>
   <h1>Bolão <span>Copa 2026</span></h1>
-  <p>Preencha seus palpites para os 72 jogos da fase de grupos. Seus palpites são salvos automaticamente no seu dispositivo. Preencha por etapas — feche, volte quando quiser e continue de onde parou. Informe o placar ao final do tempo regulamentar, sem prorrogação ou pênaltis.</p>
+  <p>Preencha seus palpites para os 72 jogos Sua jornada no Bolão Copa 2026 começa aqui! 🏆 Dê seus palpites para os 72 jogos da primeira fase como preferir: tudo de uma vez ou por rodadas. Suas alterações são salvas automaticamente no navegador do seu dispositivo para você continuar quando quiser. Só não esqueça: sempre que terminar de preencher uma rodada (ou a tabela toda), baixe o arquivo CSV e envie para a organização!</p>
 </div>
 
 <div class="progress-bar-wrap">
@@ -488,246 +412,10 @@ body {
   </div>
 
 
-  <div class="profecia-card">
-    <div class="profecia-title">🔮 Profecia dos Semifinalistas</div>
-    <p class="profecia-desc">Indique as 4 seleções que você acredita que chegarão às semifinais. Não importa a ordem — apenas quem você enxerga entre os quatro sobreviventes.</p>
-    <p class="profecia-pontos">1 certa = 100 pts &nbsp;·&nbsp; 2 certas = 200 pts &nbsp;·&nbsp; 3 certas = 300 pts &nbsp;·&nbsp; 4 certas = 400 pts &nbsp;·&nbsp; (regra do dobro do Brasil não se aplica)</p>
-    <div class="profecia-grid">
-      <div class="profecia-field">
-        <label>Semifinalista 1</label>
-        <div class="select-with-flag">
-          <select class="profecia-select" id="semi1" onchange="updateSelectFlag(this)">
-            <option value="">— Escolha uma seleção —</option>
-          <option value="África do Sul">África do Sul</option>
-          <option value="Alemanha">Alemanha</option>
-          <option value="Argélia">Argélia</option>
-          <option value="Arábia Saudita">Arábia Saudita</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Austrália">Austrália</option>
-          <option value="Áustria">Áustria</option>
-          <option value="Bélgica">Bélgica</option>
-          <option value="Bósnia e Herzegovina">Bósnia e Herzegovina</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Cabo Verde">Cabo Verde</option>
-          <option value="Canadá">Canadá</option>
-          <option value="Catar">Catar</option>
-          <option value="Colômbia">Colômbia</option>
-          <option value="Coréia do Sul">Coréia do Sul</option>
-          <option value="Costa do Marfim">Costa do Marfim</option>
-          <option value="Croácia">Croácia</option>
-          <option value="Curaçao">Curaçao</option>
-          <option value="Egito">Egito</option>
-          <option value="Equador">Equador</option>
-          <option value="Escócia">Escócia</option>
-          <option value="Espanha">Espanha</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="França">França</option>
-          <option value="Gana">Gana</option>
-          <option value="Haiti">Haiti</option>
-          <option value="Holanda">Holanda</option>
-          <option value="Inglaterra">Inglaterra</option>
-          <option value="Iraque">Iraque</option>
-          <option value="Irã">Irã</option>
-          <option value="Japão">Japão</option>
-          <option value="Jordânia">Jordânia</option>
-          <option value="Marrocos">Marrocos</option>
-          <option value="México">México</option>
-          <option value="Nova Zelândia">Nova Zelândia</option>
-          <option value="Noruega">Noruega</option>
-          <option value="Panamá">Panamá</option>
-          <option value="Paraguai">Paraguai</option>
-          <option value="Portugal">Portugal</option>
-          <option value="República do Congo">República do Congo</option>
-          <option value="Senegal">Senegal</option>
-          <option value="Suécia">Suécia</option>
-          <option value="Suíça">Suíça</option>
-          <option value="Tchéquia">Tchéquia</option>
-          <option value="Tunísia">Tunísia</option>
-          <option value="Turquia">Turquia</option>
-          <option value="Uruguai">Uruguai</option>
-          <option value="Uzbequistão">Uzbequistão</option>
-          </select>
-          <img class="select-flag-preview" id="flag_semi1" src="" alt="" style="display:none">
-        </div>
-      </div>
-      <div class="profecia-field">
-        <label>Semifinalista 2</label>
-        <div class="select-with-flag">
-          <select class="profecia-select" id="semi2" onchange="updateSelectFlag(this)">
-            <option value="">— Escolha uma seleção —</option>
-          <option value="África do Sul">África do Sul</option>
-          <option value="Alemanha">Alemanha</option>
-          <option value="Argélia">Argélia</option>
-          <option value="Arábia Saudita">Arábia Saudita</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Austrália">Austrália</option>
-          <option value="Áustria">Áustria</option>
-          <option value="Bélgica">Bélgica</option>
-          <option value="Bósnia e Herzegovina">Bósnia e Herzegovina</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Cabo Verde">Cabo Verde</option>
-          <option value="Canadá">Canadá</option>
-          <option value="Catar">Catar</option>
-          <option value="Colômbia">Colômbia</option>
-          <option value="Coréia do Sul">Coréia do Sul</option>
-          <option value="Costa do Marfim">Costa do Marfim</option>
-          <option value="Croácia">Croácia</option>
-          <option value="Curaçao">Curaçao</option>
-          <option value="Egito">Egito</option>
-          <option value="Equador">Equador</option>
-          <option value="Escócia">Escócia</option>
-          <option value="Espanha">Espanha</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="França">França</option>
-          <option value="Gana">Gana</option>
-          <option value="Haiti">Haiti</option>
-          <option value="Holanda">Holanda</option>
-          <option value="Inglaterra">Inglaterra</option>
-          <option value="Iraque">Iraque</option>
-          <option value="Irã">Irã</option>
-          <option value="Japão">Japão</option>
-          <option value="Jordânia">Jordânia</option>
-          <option value="Marrocos">Marrocos</option>
-          <option value="México">México</option>
-          <option value="Nova Zelândia">Nova Zelândia</option>
-          <option value="Noruega">Noruega</option>
-          <option value="Panamá">Panamá</option>
-          <option value="Paraguai">Paraguai</option>
-          <option value="Portugal">Portugal</option>
-          <option value="República do Congo">República do Congo</option>
-          <option value="Senegal">Senegal</option>
-          <option value="Suécia">Suécia</option>
-          <option value="Suíça">Suíça</option>
-          <option value="Tchéquia">Tchéquia</option>
-          <option value="Tunísia">Tunísia</option>
-          <option value="Turquia">Turquia</option>
-          <option value="Uruguai">Uruguai</option>
-          <option value="Uzbequistão">Uzbequistão</option>
-          </select>
-          <img class="select-flag-preview" id="flag_semi2" src="" alt="" style="display:none">
-        </div>
-      </div>
-      <div class="profecia-field">
-        <label>Semifinalista 3</label>
-        <div class="select-with-flag">
-          <select class="profecia-select" id="semi3" onchange="updateSelectFlag(this)">
-            <option value="">— Escolha uma seleção —</option>
-          <option value="África do Sul">África do Sul</option>
-          <option value="Alemanha">Alemanha</option>
-          <option value="Argélia">Argélia</option>
-          <option value="Arábia Saudita">Arábia Saudita</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Austrália">Austrália</option>
-          <option value="Áustria">Áustria</option>
-          <option value="Bélgica">Bélgica</option>
-          <option value="Bósnia e Herzegovina">Bósnia e Herzegovina</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Cabo Verde">Cabo Verde</option>
-          <option value="Canadá">Canadá</option>
-          <option value="Catar">Catar</option>
-          <option value="Colômbia">Colômbia</option>
-          <option value="Coréia do Sul">Coréia do Sul</option>
-          <option value="Costa do Marfim">Costa do Marfim</option>
-          <option value="Croácia">Croácia</option>
-          <option value="Curaçao">Curaçao</option>
-          <option value="Egito">Egito</option>
-          <option value="Equador">Equador</option>
-          <option value="Escócia">Escócia</option>
-          <option value="Espanha">Espanha</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="França">França</option>
-          <option value="Gana">Gana</option>
-          <option value="Haiti">Haiti</option>
-          <option value="Holanda">Holanda</option>
-          <option value="Inglaterra">Inglaterra</option>
-          <option value="Iraque">Iraque</option>
-          <option value="Irã">Irã</option>
-          <option value="Japão">Japão</option>
-          <option value="Jordânia">Jordânia</option>
-          <option value="Marrocos">Marrocos</option>
-          <option value="México">México</option>
-          <option value="Nova Zelândia">Nova Zelândia</option>
-          <option value="Noruega">Noruega</option>
-          <option value="Panamá">Panamá</option>
-          <option value="Paraguai">Paraguai</option>
-          <option value="Portugal">Portugal</option>
-          <option value="República do Congo">República do Congo</option>
-          <option value="Senegal">Senegal</option>
-          <option value="Suécia">Suécia</option>
-          <option value="Suíça">Suíça</option>
-          <option value="Tchéquia">Tchéquia</option>
-          <option value="Tunísia">Tunísia</option>
-          <option value="Turquia">Turquia</option>
-          <option value="Uruguai">Uruguai</option>
-          <option value="Uzbequistão">Uzbequistão</option>
-          </select>
-          <img class="select-flag-preview" id="flag_semi3" src="" alt="" style="display:none">
-        </div>
-      </div>
-      <div class="profecia-field">
-        <label>Semifinalista 4</label>
-        <div class="select-with-flag">
-          <select class="profecia-select" id="semi4" onchange="updateSelectFlag(this)">
-            <option value="">— Escolha uma seleção —</option>
-          <option value="África do Sul">África do Sul</option>
-          <option value="Alemanha">Alemanha</option>
-          <option value="Argélia">Argélia</option>
-          <option value="Arábia Saudita">Arábia Saudita</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Austrália">Austrália</option>
-          <option value="Áustria">Áustria</option>
-          <option value="Bélgica">Bélgica</option>
-          <option value="Bósnia e Herzegovina">Bósnia e Herzegovina</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Cabo Verde">Cabo Verde</option>
-          <option value="Canadá">Canadá</option>
-          <option value="Catar">Catar</option>
-          <option value="Colômbia">Colômbia</option>
-          <option value="Coréia do Sul">Coréia do Sul</option>
-          <option value="Costa do Marfim">Costa do Marfim</option>
-          <option value="Croácia">Croácia</option>
-          <option value="Curaçao">Curaçao</option>
-          <option value="Egito">Egito</option>
-          <option value="Equador">Equador</option>
-          <option value="Escócia">Escócia</option>
-          <option value="Espanha">Espanha</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="França">França</option>
-          <option value="Gana">Gana</option>
-          <option value="Haiti">Haiti</option>
-          <option value="Holanda">Holanda</option>
-          <option value="Inglaterra">Inglaterra</option>
-          <option value="Iraque">Iraque</option>
-          <option value="Irã">Irã</option>
-          <option value="Japão">Japão</option>
-          <option value="Jordânia">Jordânia</option>
-          <option value="Marrocos">Marrocos</option>
-          <option value="México">México</option>
-          <option value="Nova Zelândia">Nova Zelândia</option>
-          <option value="Noruega">Noruega</option>
-          <option value="Panamá">Panamá</option>
-          <option value="Paraguai">Paraguai</option>
-          <option value="Portugal">Portugal</option>
-          <option value="República do Congo">República do Congo</option>
-          <option value="Senegal">Senegal</option>
-          <option value="Suécia">Suécia</option>
-          <option value="Suíça">Suíça</option>
-          <option value="Tchéquia">Tchéquia</option>
-          <option value="Tunísia">Tunísia</option>
-          <option value="Turquia">Turquia</option>
-          <option value="Uruguai">Uruguai</option>
-          <option value="Uzbequistão">Uzbequistão</option>
-          </select>
-          <img class="select-flag-preview" id="flag_semi4" src="" alt="" style="display:none">
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div id="jogos-wrap"></div>
 
   <div class="btn-area">
-    <button class="btn-exportar" id="btn-enviar" onclick="enviar()">Enviar meus palpites</button>
+    <button class="btn-exportar" onclick="exportar()">⬇ Baixar meus palpites (CSV)</button>
     <button class="btn-limpar" onclick="limpar()">Limpar todos os campos</button>
     <div class="msg" id="msg"></div>
   </div>
@@ -740,8 +428,6 @@ body {
 </div>
 
 <script>
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyADhoVFs-Z_wC5LGLAsDqd_kvTR08o3jYZCXcyD6R3WhZOYZcfxDSjV70vsfoEBWDw/exec';
-
 const jogos = [
   [1,"A","11/06/2026","16:00","México","África do Sul"],
   [2,"A","11/06/2026","23:00","Coréia do Sul","Tchéquia"],
@@ -818,6 +504,7 @@ const jogos = [
 ];
 
 const jogos_brasil = new Set([6, 31, 51]);
+const jogos_bloqueados = new Set([1, 2, 3, 4]);
 
 const bandeiras = {
   'Alemanha': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABvgAAASwCAYAAAA+IE1aAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAHYcAAB2HAY/l8WUAAEgpSURBVHhe7N1NyOXnfd7x09JFDVkYi64yEBdFXrRYwqG25BjsaFK19lipgzWSX2RpbCuSLMseS4oTVZHlOLIlJ/J4HCih7S6BvkAgpdBdCRSSloZSQjZNFm0WXaQlbaAJ5M3YjspxE5dcT3LNi0a+9PL5wWfz/M859/+cZ/nl/t+Hwytobr311utvv/32e/7BD/7gz9x77qP/4WMPPfzff+TxJ/7P0RNPPvXVo6c//+w3nrtw8fl/9DP/BAAAAAAAgJe5pz//7Nc//4Uvfu3HPvPZPz42oU+ef+R/P/LoD//WuQ/f98t333PvP7377nsfPBwOr82uZAZz9uzZ73zPe977o8d/zqcff+J3j+Eu/6EAAAAAAABwdAyB5z/16P/6yEfv/3dnz971yOFw+OvZn8y1n7/23vee/eFj0PvMZz/3+3bhAQAAAAAA8EIcd/sdg99dd73/kxmmzAuYd77znfed+8h9v/TkU5/7g/zRAQAAAAAA4Fr4wjM/+ccff/gT//Etb33r2exV5jLmzJkz3/W+93/w54479fLHBQAAAAAAgBfT8Sy/j953/784HA7fkR3LxFx//fW3fuzjD/+nL335K1/PHxIAAAAAAAC+3R56+BO/8vbTp9+VXetVP2++5Za7HnjwoV/90pe/8o380QAAAAAAAGDtwYc+/p9vftvb3pud61U3b3nLW/7WR+/7od947sLFEz8SAAAAAAAAvNTc90P3/5e77r77zdm9XvHzjne847vfe/bOn7djDwAAAAAAgJejD9177l8fDofXZQd7Rc673/0DTz31uad/L38EAAAAAAAAeDn57Oee/t13vOMdj2YPe8XM2bNnv/P+Bz72ax7HCQAAAAAAwCvJsYEdDofvyD72sp7Tp08/bNceAAAAAAAAr1THFnZsYtnJXpZz77mP/MK386y94w7Bx5948lhKn3/Xmdufv/Gmm56/4YY3PH/q1Klvet111z3/mte85vnD4QAAAAAAAMDL3LH9HB070LEJHdvQsRF96J5zz59/5LETLenFdmxj2cteNvPGN77xez55/tFfzy91rR2D3jHm3XzLW7/5j8t/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',
@@ -876,35 +563,6 @@ const rodadas = [
   { label: "Rodada 3 — J49 a J72", inicio: 49, fim: 72 }
 ];
 
-function updateSelectFlag(sel) {
-  const id = sel.id;
-  const flag = document.getElementById('flag_' + id);
-  const val = sel.value;
-  if (val && bandeiras[val]) {
-    flag.src = bandeiras[val];
-    flag.style.display = 'block';
-    sel.classList.add('has-flag');
-  } else {
-    flag.style.display = 'none';
-    sel.classList.remove('has-flag');
-  }
-  bloquearDuplicados();
-}
-
-function bloquearDuplicados() {
-  const ids = ['semi1','semi2','semi3','semi4'];
-  const valores = ids.map(id => document.getElementById(id).value);
-  ids.forEach((id, i) => {
-    const sel = document.getElementById(id);
-    const valorAtual = valores[i];
-    Array.from(sel.options).forEach(opt => {
-      if (opt.value === '') return; // manter placeholder sempre disponível
-      const escolhidoPorOutro = valores.some((v, j) => j !== i && v === opt.value);
-      opt.disabled = escolhidoPorOutro;
-    });
-  });
-}
-
 function build() {
   const wrap = document.getElementById('jogos-wrap');
   rodadas.forEach(r => {
@@ -914,16 +572,20 @@ function build() {
     jogos.filter(j => j[0] >= r.inicio && j[0] <= r.fim).forEach(j => {
       const div = document.createElement('div');
       div.className = 'jogo';
+      const bloqueado = jogos_bloqueados.has(j[0]);
       if (jogos_brasil.has(j[0])) div.classList.add('jogo-brasil');
+      if (bloqueado) div.classList.add('jogo-bloqueado');
       const flag1 = bandeiras[j[4]] ? `<img class="bandeira" src="${bandeiras[j[4]]}" alt="${j[4]}">` : '';
       const flag2 = bandeiras[j[5]] ? `<img class="bandeira" src="${bandeiras[j[5]]}" alt="${j[5]}">` : '';
+      const bloqueioMsg = bloqueado ? `<span class="jogo-status">palpites encerrados</span>` : '';
+      const inputBloqueado = bloqueado ? 'disabled title="Palpites encerrados para este jogo"' : '';
       div.innerHTML = `
-        <div class="jogo-meta">J${j[0]} &middot; Grupo ${j[1]} &middot; ${j[2]} &middot; ${j[3]}</div>
+        <div class="jogo-meta">J${j[0]} &middot; Grupo ${j[1]} &middot; ${j[2]} &middot; ${j[3]} ${bloqueioMsg}</div>
         <div class="jogo-placar">
           <span class="time-nome" style="display:flex;align-items:center;gap:5px">${flag1}${j[4]}</span>
-          <input type="number" class="gol-input" id="g${j[0]}a" min="0" step="1" placeholder="–" aria-label="Gols ${j[4]}">
+          <input type="number" class="gol-input" id="g${j[0]}a" min="0" step="1" placeholder="–" aria-label="Gols ${j[4]}" ${inputBloqueado}>
           <span class="vsep">x</span>
-          <input type="number" class="gol-input" id="g${j[0]}b" min="0" step="1" placeholder="–" aria-label="Gols ${j[5]}">
+          <input type="number" class="gol-input" id="g${j[0]}b" min="0" step="1" placeholder="–" aria-label="Gols ${j[5]}" ${inputBloqueado}>
           <span class="time-nome right" style="display:flex;align-items:center;justify-content:flex-end;gap:5px">${j[5]}${flag2}</span>
         </div>`;
       card.appendChild(div);
@@ -939,9 +601,6 @@ function build() {
     }
   });
   document.getElementById('nome_completo').addEventListener('input', salvarLocal);
-  ['semi1','semi2','semi3','semi4'].forEach(id => {
-    document.getElementById(id).addEventListener('change', salvarLocal);
-  });
   document.getElementById('nome_ranking').addEventListener('input', salvarLocal);
   carregarLocal();
   atualizarProgresso();
@@ -955,16 +614,14 @@ function salvarLocal() {
       palpites: {}
     };
     jogos.forEach(j => {
+      if (jogos_bloqueados.has(j[0])) {
+        dados.palpites[j[0]] = { a: '', b: '' };
+        return;
+      }
       const a = document.getElementById('g' + j[0] + 'a');
       const b = document.getElementById('g' + j[0] + 'b');
       dados.palpites[j[0]] = { a: a ? a.value : '', b: b ? b.value : '' };
     });
-    dados.semi = [
-      document.getElementById('semi1').value,
-      document.getElementById('semi2').value,
-      document.getElementById('semi3').value,
-      document.getElementById('semi4').value
-    ];
     localStorage.setItem('bolao2026', JSON.stringify(dados));
   } catch(e) {}
 }
@@ -978,6 +635,7 @@ function carregarLocal() {
     if (dados.ranking) document.getElementById('nome_ranking').value = dados.ranking;
     if (dados.palpites) {
       jogos.forEach(j => {
+        if (jogos_bloqueados.has(j[0])) return;
         const p = dados.palpites[j[0]];
         if (!p) return;
         const a = document.getElementById('g' + j[0] + 'a');
@@ -986,135 +644,82 @@ function carregarLocal() {
         if (b && p.b !== '') { b.value = p.b; b.classList.add('preenchido'); }
       });
     }
-    if (dados.semi) {
-      ['semi1','semi2','semi3','semi4'].forEach((id, i) => {
-        const sel = document.getElementById(id);
-        if (sel && dados.semi[i]) {
-          sel.value = dados.semi[i];
-          updateSelectFlag(sel);
-        }
-      });
-      bloquearDuplicados();
-    }
   } catch(e) {}
 }
 
 function atualizarProgresso() {
   let ok = 0;
+  const totalAbertos = jogos.filter(j => !jogos_bloqueados.has(j[0])).length;
   jogos.forEach(j => {
+    if (jogos_bloqueados.has(j[0])) return;
     const a = document.getElementById('g' + j[0] + 'a');
     const b = document.getElementById('g' + j[0] + 'b');
     if (a && a.value !== '' && b && b.value !== '') ok++;
   });
-  document.getElementById('progress-fill').style.width = Math.round((ok / 72) * 100) + '%';
-  document.getElementById('progress-text').textContent = ok + ' / 72 jogos';
+  document.getElementById('progress-fill').style.width = Math.round((ok / totalAbertos) * 100) + '%';
+  document.getElementById('progress-text').textContent = ok + ' / ' + totalAbertos + ' jogos abertos';
 }
 
-function enviar() {
+function exportar() {
   const nome = document.getElementById('nome_completo').value.trim();
   const ranking = document.getElementById('nome_ranking').value.trim();
+  const msg = document.getElementById('msg');
 
   if (!nome || !ranking) {
-    mostrarMsg('err', 'Preencha o nome completo e o nome para o ranking antes de enviar.');
+    mostrarMsg('err', 'Preencha o nome completo e o nome para o ranking antes de baixar.');
     return;
   }
 
   let preenchidos = 0;
   jogos.forEach(j => {
+    if (jogos_bloqueados.has(j[0])) return;
     const a = document.getElementById('g' + j[0] + 'a');
     const b = document.getElementById('g' + j[0] + 'b');
     if (a && a.value !== '' && b && b.value !== '') preenchidos++;
   });
 
   if (preenchidos === 0) {
-    mostrarMsg('err', 'Preencha ao menos um jogo antes de enviar.');
+    mostrarMsg('err', 'Preencha ao menos um jogo antes de baixar.');
     return;
   }
 
-  const cabecalho = ['Nome Completo', 'Nome Ranking', 'Semifinalista_1', 'Semifinalista_2', 'Semifinalista_3', 'Semifinalista_4'];
+  const cabecalho = ['Nome Completo', 'Nome Ranking'];
   jogos.forEach(j => {
     cabecalho.push('J' + j[0] + '_' + j[4].replace(/,/g, ''));
     cabecalho.push('J' + j[0] + '_' + j[5].replace(/,/g, ''));
   });
 
-  const s1 = document.getElementById('semi1').value;
-  const s2 = document.getElementById('semi2').value;
-  const s3 = document.getElementById('semi3').value;
-  const s4 = document.getElementById('semi4').value;
-  const valores = [nome, ranking, s1, s2, s3, s4];
+  const linha = ['"' + nome + '"', '"' + ranking + '"'];
   jogos.forEach(j => {
+    if (jogos_bloqueados.has(j[0])) {
+      linha.push('');
+      linha.push('');
+      return;
+    }
     const va = document.getElementById('g' + j[0] + 'a');
     const vb = document.getElementById('g' + j[0] + 'b');
-    valores.push(va ? va.value : '');
-    valores.push(vb ? vb.value : '');
+    linha.push(va ? va.value : '');
+    linha.push(vb ? vb.value : '');
   });
 
-  const dados = { cabecalho: cabecalho, valores: valores };
+  const csv = '\uFEFF' + cabecalho.join(';') + '\n' + linha.join(';');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'palpites_' + nome.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '') + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 
-  const btn = document.getElementById('btn-enviar');
-  const textoOriginal = btn.textContent;
-  btn.textContent = 'Enviando...';
-  btn.classList.add('enviando');
-
-  // Usa form + iframe oculto para evitar problemas de CORS com file://
-  const iframe = document.createElement('iframe');
-  iframe.name = 'envio_frame_' + Date.now();
-  iframe.style.display = 'none';
-
-  let loadCount = 0;
-  let concluido = false;
-
-  function concluir(sucesso) {
-    if (concluido) return;
-    concluido = true;
-    clearTimeout(timeout);
-    if (sucesso) {
-      mostrarMsg('ok', '✓ Palpites enviados com sucesso!');
-    } else {
-      mostrarMsg('err', 'Erro ao enviar. Tente novamente.');
-    }
-    btn.textContent = textoOriginal;
-    btn.classList.remove('enviando');
-    setTimeout(function() {
-      if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
-      if (form.parentNode) form.parentNode.removeChild(form);
-    }, 100);
-  }
-
-  iframe.onload = function() {
-    loadCount++;
-    if (loadCount >= 2) concluir(true);
-  };
-
-  document.body.appendChild(iframe);
-
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = APPS_SCRIPT_URL;
-  form.target = iframe.name;
-  form.style.display = 'none';
-
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'dados';
-  input.value = JSON.stringify(dados);
-  form.appendChild(input);
-  document.body.appendChild(form);
-
-  form.submit();
-
-  // Fallback: se o iframe não carregar em 10s, assume sucesso
-  var timeout = setTimeout(function() { concluir(true); }, 10000);
+  mostrarMsg('ok', '✓ Arquivo gerado com sucesso com ' + preenchidos + ' jogo(s) preenchido(s)! Envie o CSV ao organizador. Você pode preencher mais jogos e baixar novamente quando quiser.');
 }
 
 function limpar() {
   if (!confirm('Deseja apagar todos os palpites preenchidos?')) return;
   document.getElementById('nome_completo').value = '';
   document.getElementById('nome_ranking').value = '';
-  ['semi1','semi2','semi3','semi4'].forEach(id => {
-    const sel = document.getElementById(id);
-    if (sel) { sel.value = ''; updateSelectFlag(sel); }
-  });
   jogos.forEach(j => {
     const a = document.getElementById('g' + j[0] + 'a');
     const b = document.getElementById('g' + j[0] + 'b');
