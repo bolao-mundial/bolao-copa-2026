@@ -6,134 +6,33 @@
   <title>Ranking Geral — Bolão Copa do Mundo 2026</title>
   <style>
     :root {
-      --bg: #06111f;
-      --bg2: #09231c;
-      --panel: rgba(255,255,255,.078);
-      --panel-strong: rgba(255,255,255,.125);
-      --text: #f7fafc;
-      --muted: #b9c4cf;
-      --line: rgba(255,255,255,.14);
-      --gold: #f6c453;
-      --silver: #d7dde8;
-      --bronze: #c88349;
-      --green: #22c55e;
-      --red: #ef4444;
-      --blue: #38bdf8;
-      --cyan: #67e8f9;
-      --shadow: 0 22px 70px rgba(0,0,0,.38);
-      --radius: 20px;
+      --bg:#06111f; --bg2:#09231c; --card:rgba(255,255,255,.078); --card2:rgba(255,255,255,.12);
+      --text:#f8fafc; --muted:#b8c4d1; --line:rgba(255,255,255,.14); --gold:#f6c453;
+      --silver:#dbe3ef; --bronze:#c88349; --green:#22c55e; --red:#ef4444; --blue:#38bdf8; --cyan:#67e8f9;
+      --shadow:0 22px 70px rgba(0,0,0,.36); --radius:22px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 0%, rgba(56,189,248,.25), transparent 32rem),
-        radial-gradient(circle at 88% 6%, rgba(246,196,83,.20), transparent 27rem),
-        radial-gradient(circle at 50% 100%, rgba(34,197,94,.13), transparent 30rem),
-        linear-gradient(135deg, var(--bg) 0%, #0b1d31 52%, var(--bg2) 100%);
-      min-height: 100vh;
-    }
-    .wrap { width: min(1240px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 54px; }
-    .hero {
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.055));
-      box-shadow: var(--shadow);
-      border-radius: 30px;
-      padding: clamp(20px, 4vw, 34px);
-      overflow: hidden;
-      position: relative;
-      isolation: isolate;
-    }
-    .hero::before { content: ""; position: absolute; inset: -1px; z-index: -1; background: linear-gradient(120deg, rgba(246,196,83,.18), transparent 36%, rgba(56,189,248,.17)); opacity: .9; }
-    .hero::after { content: "⚽"; position: absolute; right: 24px; top: 10px; font-size: 104px; opacity: .075; transform: rotate(-12deg); }
-    .eyebrow { color: var(--gold); font-weight: 800; letter-spacing: .10em; text-transform: uppercase; font-size: .78rem; margin-bottom: 8px; }
-    h1 { margin: 0; font-size: clamp(2.15rem, 6vw, 4.6rem); line-height: .95; letter-spacing: -.065em; }
-    .sub { color: var(--muted); margin-top: 13px; font-size: 1.02rem; max-width: 860px; line-height: 1.55; }
-    .meta-line { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .pill { border: 1px solid var(--line); background: rgba(255,255,255,.09); color: var(--text); border-radius: 999px; padding: 8px 13px; font-size: .88rem; white-space: nowrap; }
-    .progress-box { margin-top: 18px; display: grid; gap: 8px; max-width: 860px; }
-    .progress-label { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: .92rem; }
-    .progress { height: 13px; border-radius: 999px; background: rgba(255,255,255,.11); overflow: hidden; border: 1px solid var(--line); }
-    .progress > div { height: 100%; width: 0%; background: linear-gradient(90deg, var(--green), var(--blue), var(--gold)); border-radius: inherit; }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
-    .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; backdrop-filter: blur(10px); box-shadow: 0 10px 28px rgba(0,0,0,.16); }
-    .card.featured { background: linear-gradient(135deg, rgba(246,196,83,.18), rgba(255,255,255,.07)); }
-    .label { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 7px; }
-    .value { font-size: clamp(1.3rem, 3vw, 2.2rem); font-weight: 900; letter-spacing: -.045em; }
-    .note { color: var(--muted); font-size: .86rem; margin-top: 5px; line-height: 1.35; }
-    .section { display: grid; grid-template-columns: 1.05fr .95fr; gap: 12px; margin-bottom: 18px; }
-    .podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: stretch; min-height: 0; }
-    .podium-card { border: 1px solid var(--line); background: rgba(255,255,255,.075); border-radius: 18px; padding: 14px; text-align: center; position: relative; }
-    .podium-card.first { background: linear-gradient(180deg, rgba(246,196,83,.23), rgba(255,255,255,.075)); }
-    .podium-card.second { background: rgba(255,255,255,.09); } .podium-card.third { background: rgba(255,255,255,.075); }
-    .podium-rank { width: 36px; height: 36px; border-radius: 999px; display: inline-grid; place-items: center; font-weight: 950; color: #111827; margin-bottom: 8px; }
-    .podium-name { font-weight: 900; font-size: 1.03rem; line-height: 1.2; }
-    .podium-points { color: var(--gold); font-weight: 950; margin-top: 7px; font-size: 1.25rem; }
-    .movement { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 4px 8px; font-weight: 850; font-size: .82rem; margin-top: 8px; }
-    .movement.up { color: #bbf7d0; background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.28); }
-    .movement.down { color: #fecaca; background: rgba(239,68,68,.15); border: 1px solid rgba(239,68,68,.28); }
-    .movement.same { color: var(--muted); background: rgba(255,255,255,.07); border: 1px solid var(--line); }
-    .highlights { display: grid; gap: 9px; }
-    .highlight-row { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .highlight-row:last-child { border-bottom: 0; }
-    .highlight-row span:first-child { color: var(--muted); } .highlight-row strong { text-align: right; }
-    .toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; margin: 20px 0 12px; }
-    .toolbar h2 { margin: 0; font-size: 1.38rem; letter-spacing: -.035em; }
-    .controls { display: flex; gap: 8px; flex-wrap: wrap; }
-    input, select, button { font: inherit; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.09); color: var(--text); padding: 10px 12px; outline: none; }
-    input::placeholder { color: rgba(255,255,255,.55); } select option { color: #111827; } button { cursor: pointer; }
-    button:hover, input:focus, select:focus { border-color: rgba(246,196,83,.72); }
-    .legend { color: var(--muted); font-size: .86rem; line-height: 1.5; margin-top: -2px; }
-    .table-card { background: rgba(255,255,255,.07); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); }
-    .table-scroll { overflow-x: auto; overflow-y: visible; max-height: none; }
-    table { width: 100%; border-collapse: collapse; min-width: 1180px; }
-    th, td { padding: 12px 11px; border-bottom: 1px solid rgba(255,255,255,.08); text-align: right; white-space: nowrap; }
-    th { position: sticky; top: 0; z-index: 1; background: rgba(8,20,35,.98); color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .055em; cursor: pointer; user-select: none; }
-    th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
-    tbody tr:hover { background: rgba(255,255,255,.055); }
-    .participant { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .medal { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-weight: 950; color: #111827; font-size: .78rem; flex: 0 0 auto; }
-    .gold { background: var(--gold); } .silver { background: var(--silver); } .bronze { background: var(--bronze); color: #fff; } .neutral { background: rgba(255,255,255,.15); color: var(--text); border: 1px solid var(--line); }
-    .points { color: var(--gold); font-weight: 950; font-size: 1.06rem; }
-    .tag { display: inline-block; min-width: 34px; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.095); border: 1px solid rgba(255,255,255,.10); text-align: center; font-weight: 800; }
-    .bonus { color: var(--cyan); font-weight: 800; }
-    .footer { color: var(--muted); font-size: .86rem; margin-top: 14px; line-height: 1.5; }
-    @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } .section { grid-template-columns: 1fr; } }
-    @media (max-width: 680px) {
-      .wrap { width: min(100% - 14px, 1240px); padding-top: 12px; }
-      .hero { border-radius: 22px; }
-      .grid { grid-template-columns: 1fr; }
-      .podium { grid-template-columns: 1fr; min-height: 0; }
-      .podium-card, .podium-card.first, .podium-card.second, .podium-card.third { min-height: unset; }
-      .controls, input, select, button { width: 100%; }
-      .table-card { border-radius: 18px; }
-      .table-scroll { overflow-x: hidden; overflow-y: visible; }
-      table { width: 100%; min-width: 0; table-layout: fixed; }
-      th, td { padding: 9px 6px; font-size: .82rem; }
-      th:nth-child(n+5), td:nth-child(n+5) { display: none; }
-      th:nth-child(1), td:nth-child(1) { width: 48px; text-align: center; }
-      th:nth-child(2), td:nth-child(2) { width: auto; text-align: left; }
-      th:nth-child(3), td:nth-child(3) { width: 86px; text-align: center; }
-      th:nth-child(4), td:nth-child(4) { width: 66px; text-align: right; }
-      .participant { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .98rem; }
-      .points { font-size: 1rem; }
-      .movement { padding: 4px 7px; font-size: .78rem; gap: 3px; }
-      .medal { width: 30px; height: 30px; font-size: .78rem; }
-      .legend { font-size: .8rem; }
-    }
-    @media (max-width: 390px) {
-      th, td { padding: 8px 5px; font-size: .78rem; }
-      th:nth-child(1), td:nth-child(1) { width: 42px; }
-      th:nth-child(3), td:nth-child(3) { width: 78px; }
-      th:nth-child(4), td:nth-child(4) { width: 58px; }
-      .participant { font-size: .92rem; }
-      .movement { font-size: .74rem; }
-      .points { font-size: .96rem; }
-      .medal { width: 28px; height: 28px; }
-    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 12% 0%,rgba(56,189,248,.25),transparent 32rem),radial-gradient(circle at 88% 5%,rgba(246,196,83,.20),transparent 28rem),radial-gradient(circle at 50% 100%,rgba(34,197,94,.13),transparent 30rem),linear-gradient(135deg,var(--bg) 0%,#0b1d31 52%,var(--bg2) 100%);min-height:100vh}
+    .wrap{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:28px 0 56px}
+    .hero{position:relative;isolation:isolate;border:1px solid var(--line);background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.055));box-shadow:var(--shadow);border-radius:30px;padding:clamp(20px,4vw,36px);overflow:hidden}
+    .hero:before{content:"";position:absolute;inset:-1px;z-index:-1;background:linear-gradient(120deg,rgba(246,196,83,.18),transparent 36%,rgba(56,189,248,.17))}
+    .hero:after{content:"⚽";position:absolute;right:26px;top:6px;font-size:108px;opacity:.075;transform:rotate(-12deg)}
+    .eyebrow{color:var(--gold);font-weight:900;letter-spacing:.11em;text-transform:uppercase;font-size:.78rem;margin-bottom:9px}
+    h1{margin:0;font-size:clamp(2.15rem,6vw,4.7rem);line-height:.95;letter-spacing:-.065em}
+    .sub{color:var(--muted);margin-top:13px;font-size:1.03rem;max-width:890px;line-height:1.55}
+    .meta-line{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px} .pill{border:1px solid var(--line);background:rgba(255,255,255,.09);border-radius:999px;padding:8px 13px;font-size:.88rem;white-space:nowrap}
+    .progress-box{margin-top:18px;display:grid;gap:8px;max-width:890px} .progress-label{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:.92rem} .progress{height:13px;border-radius:999px;background:rgba(255,255,255,.11);overflow:hidden;border:1px solid var(--line)} .progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--blue),var(--gold));border-radius:inherit}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0} .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.16)} .card.strong{background:linear-gradient(135deg,rgba(246,196,83,.18),rgba(255,255,255,.07))}
+    .label{color:var(--muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.075em;margin-bottom:7px} .value{font-size:clamp(1.25rem,2.7vw,2.15rem);font-weight:950;letter-spacing:-.045em} .note{color:var(--muted);font-size:.86rem;margin-top:5px;line-height:1.35}
+    .section-title{display:flex;justify-content:space-between;gap:12px;align-items:end;margin:22px 0 10px} .section-title h2{margin:0;font-size:1.38rem;letter-spacing:-.035em} .section-title p{margin:0;color:var(--muted);font-size:.9rem}
+    .top-area{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;margin-bottom:18px} .podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} .podium-card{border:1px solid var(--line);background:rgba(255,255,255,.075);border-radius:18px;padding:14px;text-align:center} .podium-card.first{background:linear-gradient(180deg,rgba(246,196,83,.24),rgba(255,255,255,.075))} .podium-rank{width:36px;height:36px;border-radius:999px;display:inline-grid;place-items:center;font-weight:950;color:#111827;margin-bottom:8px} .podium-name{font-weight:900;font-size:1.03rem;line-height:1.2} .podium-points{color:var(--gold);font-weight:950;margin-top:7px;font-size:1.25rem}
+    .high-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .highlight{border:1px solid var(--line);background:rgba(255,255,255,.075);border-radius:18px;padding:14px;min-height:124px;display:flex;flex-direction:column;justify-content:space-between} .highlight.neg{background:rgba(239,68,68,.10)} .highlight-title{font-size:.84rem;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.055em} .highlight-name{font-weight:950;font-size:1.05rem;margin-top:8px;line-height:1.22} .highlight-value{color:var(--gold);font-weight:950;margin-top:8px} .highlight-crit{color:var(--muted);font-size:.78rem;line-height:1.35;margin-top:5px}
+    .movement{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 8px;font-weight:850;font-size:.82rem;margin-top:8px} .up{color:#bbf7d0;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.28)} .down{color:#fecaca;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.28)} .same{color:var(--muted);background:rgba(255,255,255,.07);border:1px solid var(--line)}
+    .toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;margin:20px 0 12px} .toolbar h2{margin:0;font-size:1.38rem;letter-spacing:-.035em} .legend{color:var(--muted);font-size:.86rem;line-height:1.5;margin-top:4px} .controls{display:flex;gap:8px;flex-wrap:wrap} input,select,button{font:inherit;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--text);padding:10px 12px;outline:none} input::placeholder{color:rgba(255,255,255,.55)} select option{color:#111827} button{cursor:pointer} button:hover,input:focus,select:focus{border-color:rgba(246,196,83,.72)}
+    .table-card{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)} .table-scroll{overflow-x:auto} table{width:100%;border-collapse:collapse;min-width:1160px} th,td{padding:12px 11px;border-bottom:1px solid rgba(255,255,255,.08);text-align:right;white-space:nowrap} th{position:sticky;top:0;z-index:1;background:rgba(8,20,35,.98);color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.055em;cursor:pointer;user-select:none} th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left} tbody tr:hover{background:rgba(255,255,255,.055)} .participant{font-weight:850} .points{color:var(--gold);font-weight:950;font-size:1.06rem} .tag{display:inline-block;min-width:34px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.095);border:1px solid rgba(255,255,255,.10);text-align:center;font-weight:850} .medal{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:950;color:#111827;font-size:.78rem} .gold{background:var(--gold)} .silver{background:var(--silver)} .bronze{background:var(--bronze);color:#fff} .neutral{background:rgba(255,255,255,.15);color:var(--text);border:1px solid var(--line)}
+    .mobile-list{display:none;gap:10px} .mobile-card{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.075);padding:14px} .mobile-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start} .mobile-name{font-weight:950;font-size:1.05rem;line-height:1.15} .mobile-points{color:var(--gold);font-weight:950;font-size:1.18rem;white-space:nowrap} .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px} .mini div{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);border-radius:12px;padding:7px;text-align:center} .mini span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.04em} .mini strong{display:block;margin-top:3px}
+    .after{margin-top:18px} .footer{color:var(--muted);font-size:.86rem;margin-top:14px;line-height:1.5}
+    @media(max-width:980px){.stats{grid-template-columns:repeat(2,1fr)}.top-area{grid-template-columns:1fr}.high-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:680px){.wrap{width:min(100% - 14px,1240px);padding-top:12px}.hero{border-radius:22px}.stats{grid-template-columns:1fr}.podium{grid-template-columns:1fr}.high-grid{grid-template-columns:1fr}.controls,input,select,button{width:100%}.table-card{display:none}.mobile-list{display:grid}.section-title{display:block}.section-title p{margin-top:4px}}
   </style>
 </head>
 <body>
@@ -141,205 +40,46 @@
     <header class="hero">
       <div class="eyebrow" id="edition"></div>
       <h1>Ranking Geral</h1>
-      <div class="sub">Classificação atualizada do bolão, com movimentação em relação ao ranking anterior, faixas de acerto, aproveitamento, pontuação nos jogos do Brasil e distância para a liderança.</div>
-      <div class="meta-line">
-        <span class="pill" id="updated"></span>
-        <span class="pill" id="games"></span>
-        <span class="pill" id="participants"></span>
-        <span class="pill" id="maxPoints"></span>
-      </div>
-      <div class="progress-box">
-        <div class="progress-label"><span>Andamento da Copa</span><strong id="progressText">—</strong></div>
-        <div class="progress"><div id="progressBar"></div></div>
-      </div>
+      <div class="sub">Classificação atualizada do bolão, com pódio, movimentação, faixas de acerto, aproveitamento, pontos nos jogos do Brasil e destaques do momento.</div>
+      <div class="meta-line"><span class="pill" id="updated"></span><span class="pill" id="games"></span><span class="pill" id="participants"></span><span class="pill" id="maxPoints"></span></div>
+      <div class="progress-box"><div class="progress-label"><span>Andamento da Copa</span><strong id="progressText">—</strong></div><div class="progress"><div id="progressBar"></div></div></div>
     </header>
-
-    <section class="grid" id="cards"></section>
-
-    <section class="section">
-      <div class="card featured">
-        <div class="label">Pódio do momento</div>
-        <div class="podium" id="podium"></div>
-      </div>
-      <div class="card">
-        <div class="label">Destaques & provocações saudáveis</div>
-        <div class="highlights" id="highlights"></div>
-      </div>
+    <section class="stats" id="cards"></section>
+    <section class="top-area">
+      <div class="card strong"><div class="label">Pódio do momento</div><div class="podium" id="podium"></div></div>
+      <div class="card"><div class="label">Destaques principais</div><div class="high-grid" id="mainHighlights"></div></div>
     </section>
-
-    <div class="toolbar">
-      <div>
-        <h2>Classificação completa</h2>
-        <div class="legend">F1 = placar exato · F2 = vencedor + gols do vencedor · F3 = vencedor + gols do perdedor · F4 = apenas vencedor · F5 = chorinho · F6 = tudo errado.</div>
-      </div>
-      <div class="controls">
-        <input id="search" type="search" placeholder="Buscar participante..." />
-        <select id="sort">
-          <option value="pos">Ordenar por posição</option>
-          <option value="pontos" selected>Ordenar por pontos</option>
-          <option value="variacao">Ordenar por movimentação</option>
-          <option value="f1">Ordenar por F1</option>
-          <option value="aprovPts">Ordenar por aproveitamento</option>
-          <option value="ptsBra">Ordenar por pontos Brasil</option>
-          <option value="f5">Ordenar por chorinhos</option>
-          <option value="f6">Ordenar por tudo errado</option>
-        </select>
-        <button id="reset">Limpar</button>
-      </div>
-    </div>
-
-    <div class="table-card">
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th data-sort="pos">Pos.</th>
-              <th data-sort="participante">Participante</th>
-              <th data-sort="variacao">Mov.</th>
-              <th data-sort="pontos">Pontos</th>
-              <th data-sort="jogosComPts">Jogos c/ pts</th>
-              <th data-sort="f1">F1</th>
-              <th data-sort="f2">F2</th>
-              <th data-sort="f3">F3</th>
-              <th data-sort="f4">F4</th>
-              <th data-sort="f5">F5</th>
-              <th data-sort="f6">F6</th>
-              <th data-sort="ptsBra">Pts BRA</th>
-              <th data-sort="faixas">Faixas</th>
-              <th data-sort="aprovPts">Aprov.</th>
-              <th data-sort="deltaLider">Atrás do líder</th>
-              <th data-sort="deltaAcima">P/ subir</th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="footer">Arquivo HTML autônomo: os dados e destaques foram embutidos diretamente a partir da aba <strong>RANKING</strong> da planilha atualizada.</div>
+    <div class="toolbar"><div><h2>Classificação completa</h2><div class="legend">F1 = placar exato · F2 = vencedor + gols do vencedor · F3 = vencedor + gols do perdedor · F4 = apenas vencedor · F5 = chorinho · F6 = tudo errado.</div></div><div class="controls"><input id="search" type="search" placeholder="Buscar participante..."/><select id="sort"><option value="pontos" selected>Ordenar por pontos</option><option value="pos">Ordenar por posição</option><option value="mov">Ordenar por movimentação</option><option value="f1">Ordenar por F1</option><option value="jogosPts">Ordenar por regularidade</option><option value="aprovNum">Ordenar por aproveitamento</option><option value="ptsBra">Ordenar por pontos Brasil</option><option value="f5">Ordenar por chorinho</option><option value="f6">Ordenar por tudo errado</option></select><button id="reset">Limpar</button></div></div>
+    <div class="table-card"><div class="table-scroll"><table><thead><tr><th data-sort="pos">Pos.</th><th data-sort="participante">Participante</th><th data-sort="mov">Mov.</th><th data-sort="pontos">Pontos</th><th data-sort="jogosPts">Jogos c/ pts</th><th data-sort="f1">F1</th><th data-sort="f2">F2</th><th data-sort="f3">F3</th><th data-sort="f4">F4</th><th data-sort="f5">F5</th><th data-sort="f6">F6</th><th data-sort="ptsBra">Pts BRA</th><th data-sort="faixas">Faixas</th><th data-sort="aprovNum">Aprov.</th><th data-sort="atras">Atrás líder</th><th data-sort="subir">P/ subir</th></tr></thead><tbody id="tbody"></tbody></table></div></div>
+    <div class="mobile-list" id="mobileList"></div>
+    <section class="after"><div class="section-title"><h2>Outros destaques</h2><p>Complementos estatísticos para consulta depois da classificação.</p></div><div class="high-grid" id="otherHighlights"></div></section>
+    <div class="footer">Arquivo HTML autônomo: os dados foram embutidos diretamente a partir dos CSVs enviados. Para atualizar depois, basta gerar nova versão com os CSVs atualizados.</div>
   </div>
-
-  <script>
-    const RANKING_DATA = {"meta":{"edicao":"5ª Edição — Bolão Copa do Mundo 2026","geradoEm":"14/06/2026","jogosRealizados":8,"jogosRestantes":96,"jogosTotal":104,"maxPtsDisputados":450,"fonte":"Aba RANKING — Bolao_Copa_2026 - Backup.xlsx"},"indicadores":{"Pts BRA disputados (máx)":100,"Pts Mata-Mata disputados":0,"Participantes ativos":55,"Jogos realizados":8,"Jogos restantes":96,"Máx pts disputados":450,"Pts do(s) líder(es)":210,"Melhor aproveitamento":0.4666666666666667,"Aproveitamento médio (ativos)":0.22048484848484848,"Líder em Pts BRA":"Diego Gonzatto e Moisés","Pts BRA do líder BRA":100,"Total bônus distribuído":0},"destaques":[{"label":"👑 Camisa 10","value":"Diego Gonzatto"},{"label":"    Pontos do líder","value":210},{"label":"🎯 Mais Placares Exatos","value":"João Gabriel e Manu Porto"},{"label":"    Qtd. placares exatos","value":3},{"label":"📈 Melhor Aproveitamento","value":"Diego Gonzatto"},{"label":"    Aproveitamento %","value":0.4666666666666667},{"label":"💨 Bola Murcha (último colocado)","value":"Freitas"},{"label":"🏅 Craque da Faixa 2","value":"Sil"},{"label":"    Qtd. jogos F2","value":3},{"label":"🥉 Craque da Faixa 3","value":"Mana"},{"label":"    Qtd. jogos F3","value":4},{"label":"🎯 Craque da Faixa 4","value":"Diego Gonzatto"},{"label":"    Qtd. jogos F4","value":4},{"label":"🎁 Craque do Chorinho (F5)","value":"Mestre"},{"label":"    Qtd. jogos F5","value":5},{"label":"🇧🇷 Líder Jogos do Brasil","value":"Diego Gonzatto e Moisés"},{"label":"    Pontos BRA","value":100},{"label":"💸 Pé-frio (mais Tudo Errado)","value":"Lucas Rovaris e Freitas"},{"label":"    Qtd. tudo errado","value":5},{"label":"    Qtd. Bolas Murchas","value":1}],"participantes":[{"pos":1,"participante":"Diego Gonzatto","pontos":210,"base":210,"jogosComPts":7,"f1":2,"f1Pts":150,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":4,"f4Pts":40,"f5":0,"f5Pts":0,"f6":1,"aprovPts":0.4666666666666667,"ptsBra":100,"aprovBra":1.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":10,"variacao":9,"deltaLider":0,"deltaAcima":0},{"pos":2,"participante":"João Gabriel","pontos":201,"base":201,"jogosComPts":7,"f1":3,"f1Pts":150,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":1,"f5Pts":1,"f6":1,"aprovPts":0.44666666666666666,"ptsBra":0,"aprovBra":0.0,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":7,"variacao":5,"deltaLider":9,"deltaAcima":9},{"pos":3,"participante":"Moisés","pontos":174,"base":174,"jogosComPts":7,"f1":2,"f1Pts":150,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":0,"f4Pts":0,"f5":4,"f5Pts":4,"f6":1,"aprovPts":0.38666666666666666,"ptsBra":100,"aprovBra":1.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":54,"variacao":51,"deltaLider":36,"deltaAcima":27},{"pos":4,"participante":"Manu Porto","pontos":163,"base":163,"jogosComPts":7,"f1":3,"f1Pts":150,"f2":0,"f2Pts":0,"f3":0,"f3Pts":0,"f4":1,"f4Pts":10,"f5":3,"f5Pts":3,"f6":1,"aprovPts":0.3622222222222222,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":18,"variacao":14,"deltaLider":47,"deltaAcima":11},{"pos":5,"participante":"Analu","pontos":158,"base":158,"jogosComPts":8,"f1":2,"f1Pts":100,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":3,"f4Pts":30,"f5":2,"f5Pts":3,"f6":0,"aprovPts":0.3511111111111111,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":23,"variacao":18,"deltaLider":52,"deltaAcima":5},{"pos":6,"participante":"Evelyn","pontos":155,"base":155,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":3,"f4Pts":30,"f5":0,"f5Pts":0,"f6":2,"aprovPts":0.34444444444444444,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":6,"variacao":0,"deltaLider":55,"deltaAcima":3},{"pos":7,"participante":"Tercio Baiano","pontos":151,"base":151,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":1,"f5Pts":1,"f6":2,"aprovPts":0.33555555555555555,"ptsBra":0,"aprovBra":0.0,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":7,"variacao":0,"deltaLider":59,"deltaAcima":4},{"pos":8,"participante":"Alan Zordan","pontos":143,"base":143,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":0,"f4Pts":0,"f5":2,"f5Pts":3,"f6":2,"aprovPts":0.31777777777777777,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":2,"variacao":-6,"deltaLider":67,"deltaAcima":8},{"pos":9,"participante":"Jakare","pontos":142,"base":142,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":0,"f4Pts":0,"f5":2,"f5Pts":2,"f6":2,"aprovPts":0.31555555555555553,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":32,"variacao":23,"deltaLider":68,"deltaAcima":1},{"pos":10,"participante":"William Gross","pontos":139,"base":139,"jogosComPts":8,"f1":1,"f1Pts":50,"f2":1,"f2Pts":25,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":0,"aprovPts":0.3088888888888889,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":5,"variacao":-5,"deltaLider":71,"deltaAcima":3},{"pos":11,"participante":"Otavio","pontos":138,"base":138,"jogosComPts":8,"f1":1,"f1Pts":50,"f2":1,"f2Pts":25,"f3":2,"f3Pts":40,"f4":2,"f4Pts":20,"f5":2,"f5Pts":3,"f6":0,"aprovPts":0.30666666666666664,"ptsBra":2,"aprovBra":0.02,"faixas":5,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":1,"variacao":-10,"deltaLider":72,"deltaAcima":1},{"pos":12,"participante":"Dom Braga","pontos":137,"base":137,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":1,"f2Pts":25,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":1,"f5Pts":2,"f6":2,"aprovPts":0.30444444444444446,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":17,"variacao":5,"deltaLider":73,"deltaAcima":1},{"pos":13,"participante":"Sil","pontos":136,"base":136,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":3,"f2Pts":75,"f3":0,"f3Pts":0,"f4":1,"f4Pts":10,"f5":1,"f5Pts":1,"f6":2,"aprovPts":0.3022222222222222,"ptsBra":0,"aprovBra":0.0,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":3,"variacao":-10,"deltaLider":74,"deltaAcima":1},{"pos":14,"participante":"Alex Picolo","pontos":134,"base":134,"jogosComPts":7,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.29777777777777775,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":18,"variacao":4,"deltaLider":76,"deltaAcima":2},{"pos":15,"participante":"Mana","pontos":133,"base":133,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":4,"f3Pts":80,"f4":0,"f4Pts":0,"f5":2,"f5Pts":3,"f6":1,"aprovPts":0.29555555555555557,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":14,"variacao":-1,"deltaLider":77,"deltaAcima":1},{"pos":16,"participante":"Igão","pontos":131,"base":131,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":2,"f2Pts":50,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":1,"f5Pts":1,"f6":2,"aprovPts":0.2911111111111111,"ptsBra":0,"aprovBra":0.0,"faixas":5,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":37,"variacao":21,"deltaLider":79,"deltaAcima":2},{"pos":17,"participante":"Jéssica Cavalcanti","pontos":124,"base":124,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.27555555555555555,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":24,"variacao":7,"deltaLider":86,"deltaAcima":7},{"pos":18,"participante":"José","pontos":122,"base":122,"jogosComPts":4,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":0,"f4Pts":0,"f5":1,"f5Pts":2,"f6":4,"aprovPts":0.27111111111111114,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":3,"variacao":-15,"deltaLider":88,"deltaAcima":2},{"pos":19,"participante":"Jeffe","pontos":114,"base":114,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.25333333333333335,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":12,"variacao":-7,"deltaLider":96,"deltaAcima":8},{"pos":19,"participante":"Viccenzo","pontos":114,"base":114,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.25333333333333335,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":12,"variacao":-7,"deltaLider":96,"deltaAcima":8},{"pos":21,"participante":"Cauã","pontos":113,"base":113,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":2,"f5Pts":3,"f6":2,"aprovPts":0.2511111111111111,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":14,"variacao":-7,"deltaLider":97,"deltaAcima":1},{"pos":21,"participante":"Junior","pontos":113,"base":113,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":0,"f3Pts":0,"f4":1,"f4Pts":10,"f5":3,"f5Pts":3,"f6":2,"aprovPts":0.2511111111111111,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":24,"variacao":3,"deltaLider":97,"deltaAcima":1},{"pos":23,"participante":"Mattana","pontos":112,"base":112,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":2,"f4Pts":20,"f5":1,"f5Pts":2,"f6":2,"aprovPts":0.24888888888888888,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":10,"variacao":-13,"deltaLider":98,"deltaAcima":1},{"pos":23,"participante":"Leo","pontos":112,"base":112,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":3,"f4Pts":40,"f5":2,"f5Pts":2,"f6":1,"aprovPts":0.24888888888888888,"ptsBra":20,"aprovBra":0.2,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":14,"variacao":-9,"deltaLider":98,"deltaAcima":1},{"pos":25,"participante":"Yuri Belarmino","pontos":109,"base":109,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":1,"f2Pts":25,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.24222222222222223,"ptsBra":2,"aprovBra":0.02,"faixas":5,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":37,"variacao":12,"deltaLider":101,"deltaAcima":3},{"pos":26,"participante":"Diogo","pontos":108,"base":108,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":1,"f2Pts":25,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":2,"f5Pts":3,"f6":2,"aprovPts":0.24,"ptsBra":2,"aprovBra":0.02,"faixas":5,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":37,"variacao":11,"deltaLider":102,"deltaAcima":1},{"pos":27,"participante":"Ildecler","pontos":105,"base":105,"jogosComPts":6,"f1":2,"f1Pts":100,"f2":0,"f2Pts":0,"f3":0,"f3Pts":0,"f4":0,"f4Pts":0,"f5":4,"f5Pts":5,"f6":2,"aprovPts":0.23333333333333334,"ptsBra":2,"aprovBra":0.02,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":24,"variacao":-3,"deltaLider":105,"deltaAcima":3},{"pos":28,"participante":"Ocimar","pontos":104,"base":104,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.2311111111111111,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":18,"variacao":-10,"deltaLider":106,"deltaAcima":1},{"pos":29,"participante":"Cristiano","pontos":103,"base":103,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":2,"f5Pts":3,"f6":2,"aprovPts":0.2288888888888889,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":21,"variacao":-8,"deltaLider":107,"deltaAcima":1},{"pos":30,"participante":"Guetis","pontos":89,"base":89,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.19777777777777777,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":28,"variacao":-2,"deltaLider":121,"deltaAcima":14},{"pos":31,"participante":"Ck","pontos":85,"base":85,"jogosComPts":7,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":4,"f5Pts":5,"f6":1,"aprovPts":0.18888888888888888,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":47,"variacao":16,"deltaLider":125,"deltaAcima":4},{"pos":32,"participante":"Xanda","pontos":84,"base":84,"jogosComPts":6,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.18666666666666668,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":7,"variacao":-25,"deltaLider":126,"deltaAcima":1},{"pos":32,"participante":"Steve Wonder, o oráculo","pontos":84,"base":84,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":4,"f3Pts":80,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.18666666666666668,"ptsBra":2,"aprovBra":0.02,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":32,"variacao":0,"deltaLider":126,"deltaAcima":1},{"pos":34,"participante":"Flávia","pontos":83,"base":83,"jogosComPts":5,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":2,"f5Pts":3,"f6":3,"aprovPts":0.18444444444444444,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":21,"variacao":-13,"deltaLider":127,"deltaAcima":1},{"pos":35,"participante":"Dudasccp","pontos":79,"base":79,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.17555555555555555,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":34,"variacao":-1,"deltaLider":131,"deltaAcima":4},{"pos":36,"participante":"Professor Pardal","pontos":76,"base":76,"jogosComPts":5,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":1,"f3Pts":20,"f4":2,"f4Pts":30,"f5":1,"f5Pts":1,"f6":3,"aprovPts":0.1688888888888889,"ptsBra":20,"aprovBra":0.2,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":31,"variacao":-5,"deltaLider":134,"deltaAcima":3},{"pos":37,"participante":"Emerson FC","pontos":74,"base":74,"jogosComPts":5,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":3,"aprovPts":0.16444444444444445,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":24,"variacao":-13,"deltaLider":136,"deltaAcima":2},{"pos":38,"participante":"Gabi","pontos":73,"base":73,"jogosComPts":5,"f1":1,"f1Pts":50,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":0,"f4Pts":0,"f5":3,"f5Pts":3,"f6":3,"aprovPts":0.1622222222222222,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":47,"variacao":9,"deltaLider":137,"deltaAcima":1},{"pos":39,"participante":"Comentarista Tabajara","pontos":69,"base":69,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":2,"f3Pts":40,"f4":0,"f4Pts":0,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.15333333333333332,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":28,"variacao":-11,"deltaLider":141,"deltaAcima":4},{"pos":40,"participante":"Misael Alves","pontos":68,"base":68,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":2,"f3Pts":40,"f4":0,"f4Pts":0,"f5":3,"f5Pts":3,"f6":2,"aprovPts":0.1511111111111111,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":42,"variacao":2,"deltaLider":142,"deltaAcima":1},{"pos":41,"participante":"Luís","pontos":62,"base":62,"jogosComPts":5,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":3,"f3Pts":60,"f4":0,"f4Pts":0,"f5":2,"f5Pts":2,"f6":1,"aprovPts":0.13777777777777778,"ptsBra":0,"aprovBra":0.0,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":49,"variacao":8,"deltaLider":148,"deltaAcima":6},{"pos":42,"participante":"Valéria","pontos":60,"base":60,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":4,"f5Pts":5,"f6":1,"aprovPts":0.13333333333333333,"ptsBra":2,"aprovBra":0.02,"faixas":4,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":28,"variacao":-14,"deltaLider":150,"deltaAcima":2},{"pos":43,"participante":"Graça","pontos":59,"base":59,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":3,"f4Pts":30,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.13111111111111112,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":34,"variacao":-9,"deltaLider":151,"deltaAcima":1},{"pos":44,"participante":"Lucas Rovaris","pontos":55,"base":55,"jogosComPts":3,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":1,"f3Pts":20,"f4":1,"f4Pts":10,"f5":0,"f5Pts":0,"f6":5,"aprovPts":0.12222222222222222,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":46,"variacao":2,"deltaLider":155,"deltaAcima":4},{"pos":45,"participante":"Carla","pontos":54,"base":54,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.12,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":40,"variacao":-5,"deltaLider":156,"deltaAcima":1},{"pos":45,"participante":"Rovaris","pontos":54,"base":54,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.12,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":52,"variacao":7,"deltaLider":156,"deltaAcima":1},{"pos":45,"participante":"Soveral","pontos":54,"base":54,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":1,"f3Pts":20,"f4":3,"f4Pts":30,"f5":3,"f5Pts":4,"f6":1,"aprovPts":0.12,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":40,"variacao":-5,"deltaLider":156,"deltaAcima":1},{"pos":48,"participante":"Zebra","pontos":51,"base":51,"jogosComPts":4,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":2,"f3Pts":40,"f4":1,"f4Pts":10,"f5":1,"f5Pts":1,"f6":4,"aprovPts":0.11333333333333333,"ptsBra":0,"aprovBra":0.0,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":55,"variacao":7,"deltaLider":159,"deltaAcima":3},{"pos":49,"participante":"Pâm","pontos":50,"base":50,"jogosComPts":7,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":2,"f4Pts":20,"f5":4,"f5Pts":5,"f6":1,"aprovPts":0.1111111111111111,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":34,"variacao":-15,"deltaLider":160,"deltaAcima":1},{"pos":50,"participante":"Katia","pontos":49,"base":49,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":2,"f4Pts":20,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.10888888888888888,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":42,"variacao":-8,"deltaLider":161,"deltaAcima":1},{"pos":51,"participante":"Tainan Dener","pontos":38,"base":38,"jogosComPts":4,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":1,"f4Pts":10,"f5":2,"f5Pts":3,"f6":4,"aprovPts":0.08444444444444445,"ptsBra":2,"aprovBra":0.02,"faixas":3,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":45,"variacao":-6,"deltaLider":172,"deltaAcima":11},{"pos":52,"participante":"Lise","pontos":34,"base":34,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":0,"f3Pts":0,"f4":3,"f4Pts":30,"f5":3,"f5Pts":4,"f6":2,"aprovPts":0.07555555555555556,"ptsBra":2,"aprovBra":0.02,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":52,"variacao":0,"deltaLider":176,"deltaAcima":4},{"pos":53,"participante":"Mestre","pontos":31,"base":31,"jogosComPts":6,"f1":0,"f1Pts":0,"f2":1,"f2Pts":25,"f3":0,"f3Pts":0,"f4":0,"f4Pts":0,"f5":5,"f5Pts":6,"f6":2,"aprovPts":0.06888888888888889,"ptsBra":2,"aprovBra":0.02,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":42,"variacao":-11,"deltaLider":179,"deltaAcima":3},{"pos":54,"participante":"Cacio","pontos":23,"base":23,"jogosComPts":5,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":0,"f3Pts":0,"f4":2,"f4Pts":20,"f5":3,"f5Pts":3,"f6":3,"aprovPts":0.051111111111111114,"ptsBra":0,"aprovBra":0.0,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":51,"variacao":-3,"deltaLider":187,"deltaAcima":8},{"pos":55,"participante":"Freitas","pontos":21,"base":21,"jogosComPts":3,"f1":0,"f1Pts":0,"f2":0,"f2Pts":0,"f3":0,"f3Pts":0,"f4":2,"f4Pts":20,"f5":1,"f5Pts":1,"f6":5,"aprovPts":0.04666666666666667,"ptsBra":0,"aprovBra":0.0,"faixas":2,"aprovMataMata":null,"bonusProfecia":0,"bonusOraculo":0,"bonusHatTrick":0,"posAnterior":50,"variacao":-5,"deltaLider":189,"deltaAcima":2}]};
-    const state = { rows: RANKING_DATA.participantes || [], sortKey: 'pontos', sortDir: 1, query: '' };
-    const fmtInt = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 });
-    const fmtDec = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-    const fmtPct = new Intl.NumberFormat('pt-BR', { style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 1 });
-    const byId = id => document.getElementById(id);
-    function n(v, fallback=0) { if (v === null || v === undefined || v === '') return fallback; const x = Number(v); return Number.isFinite(x) ? x : fallback; }
-    function safe(v, fallback='—') { return v === null || v === undefined || v === '' ? fallback : v; }
-    function escapeHtml(s) { return String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
-    function medal(pos) {
-      if (pos === 1) return '<span class="medal gold">1</span>';
-      if (pos === 2) return '<span class="medal silver">2</span>';
-      if (pos === 3) return '<span class="medal bronze">3</span>';
-      return `<span class="medal neutral">${safe(pos, '–')}</span>`;
-    }
-    function movement(v) {
-      if (v === null || v === undefined || v === '') return '<span class="movement same">—</span>';
-      const x = n(v);
-      if (x > 0) return `<span class="movement up">▲ +${fmtInt.format(x)}</span>`;
-      if (x < 0) return `<span class="movement down">▼ ${fmtInt.format(Math.abs(x))}</span>`;
-      return '<span class="movement same">• 0</span>';
-    }
-    function renderHeader() {
-      const m = RANKING_DATA.meta || {};
-      const done = n(m.jogosRealizados); const total = n(m.jogosTotal); const pct = total ? Math.max(0, Math.min(100, done/total*100)) : 0;
-      byId('edition').textContent = m.edicao || 'Bolão Copa do Mundo 2026';
-      byId('updated').textContent = `Atualização: ${safe(m.geradoEm)}`;
-      byId('games').textContent = `Jogos: ${done}/${total}`;
-      byId('participants').textContent = `Participantes: ${state.rows.length}`;
-      byId('maxPoints').textContent = `Máx. disputado: ${fmtInt.format(n(m.maxPtsDisputados))} pts`;
-      byId('progressBar').style.width = pct + '%';
-      byId('progressText').textContent = `${done} de ${total} jogos (${fmtPct.format(pct/100)})`;
-    }
-    function topRows() {
-      const minRanks = [...new Set(state.rows.map(r => n(r.pos, 999999)).filter(x => x < 999999))].sort((a,b)=>a-b).slice(0,3);
-      return [...state.rows].filter(r => minRanks.includes(n(r.pos, 999999))).sort((a,b) => n(a.pos, 999999)-n(b.pos, 999999) || n(b.pontos)-n(a.pontos) || String(a.participante).localeCompare(String(b.participante),'pt-BR'));
-    }
-    function renderCards() {
-      const rows = state.rows;
-      const leader = rows.find(r => r.pos === 1) || rows[0] || {};
-      const maxUp = [...rows].filter(r => n(r.variacao) > 0).sort((a,b) => n(b.variacao)-n(a.variacao))[0];
-      const maxDown = [...rows].filter(r => n(r.variacao) < 0).sort((a,b) => n(a.variacao)-n(b.variacao))[0];
-      const avg = rows.reduce((s,r)=>s+n(r.pontos),0)/(rows.length || 1);
-      const cards = [
-        ['Líder', safe(leader.participante), `${fmtInt.format(n(leader.pontos))} pontos`],
-        ['Maior subida', maxUp ? maxUp.participante : '—', maxUp ? `subiu ${fmtInt.format(n(maxUp.variacao))} posições` : 'sem avanço registrado'],
-        ['Maior queda', maxDown ? maxDown.participante : '—', maxDown ? `desceu ${fmtInt.format(Math.abs(n(maxDown.variacao)))} posições` : 'sem queda registrada'],
-        ['Média geral', fmtDec.format(avg), 'pontos por participante']
-      ];
-      byId('cards').innerHTML = cards.map(([label,value,note]) => `<div class="card"><div class="label">${escapeHtml(label)}</div><div class="value">${escapeHtml(value)}</div><div class="note">${escapeHtml(note)}</div></div>`).join('');
-    }
-    function renderPodium() {
-      const podium = topRows();
-      byId('podium').innerHTML = podium.map(r => {
-        const cls = r.pos === 1 ? 'first' : r.pos === 2 ? 'second' : 'third';
-        const colorCls = r.pos === 1 ? 'gold' : r.pos === 2 ? 'silver' : 'bronze';
-        return `<div class="podium-card ${cls}"><div class="podium-rank ${colorCls}">${safe(r.pos)}</div><div class="podium-name">${escapeHtml(r.participante)}</div><div class="podium-points">${fmtInt.format(n(r.pontos))} pts</div>${movement(r.variacao)}</div>`;
-      }).join('');
-    }
-    function fmtValue(v, label='') {
-      if (v === null || v === undefined || v === '') return '—';
-      if (typeof v === 'number') {
-        const lower = String(label).toLowerCase();
-        if (lower.includes('%') || lower.includes('aproveitamento')) return fmtPct.format(v);
-        return Number.isInteger(v) ? fmtInt.format(v) : fmtDec.format(v);
-      }
-      return String(v);
-    }
-    function renderHighlights() {
-      const highlights = RANKING_DATA.destaques || [];
-      byId('highlights').innerHTML = highlights.map(x => `<div class="highlight-row"><span>${escapeHtml(x.label)}</span><strong>${escapeHtml(fmtValue(x.value, x.label))}</strong></div>`).join('');
-    }
-    function scoreTag(count, pts) {
-      const c = n(count); const p = n(pts);
-      return `<span class="tag" title="${fmtInt.format(p)} pontos nesta faixa">${fmtInt.format(c)}</span>`;
-    }
-    function sortRows(rows) {
-      const key = state.sortKey;
-      return [...rows].sort((a,b) => {
-        let av = a[key], bv = b[key];
-        if (key === 'participante') return String(av).localeCompare(String(bv), 'pt-BR') * state.sortDir;
-        if (key === 'pos') return (n(av, 999999)-n(bv, 999999)) * state.sortDir || String(a.participante).localeCompare(String(b.participante), 'pt-BR');
-        return (n(bv)-n(av)) * state.sortDir || (n(a.pos,999999)-n(b.pos,999999)) || String(a.participante).localeCompare(String(b.participante),'pt-BR');
-      });
-    }
-    function renderTable() {
-      const q = state.query.trim().toLowerCase();
-      const filtered = state.rows.filter(r => !q || String(r.participante).toLowerCase().includes(q));
-      const rows = sortRows(filtered);
-      byId('tbody').innerHTML = rows.map(r => `
-        <tr>
-          <td>${medal(r.pos)}</td>
-          <td><div class="participant">${escapeHtml(r.participante)}</div></td>
-          <td>${movement(r.variacao)}</td>
-          <td class="points">${fmtInt.format(n(r.pontos))}</td>
-          <td>${fmtInt.format(n(r.jogosComPts))}</td>
-          <td>${scoreTag(r.f1, r.f1Pts)}</td>
-          <td>${scoreTag(r.f2, r.f2Pts)}</td>
-          <td>${scoreTag(r.f3, r.f3Pts)}</td>
-          <td>${scoreTag(r.f4, r.f4Pts)}</td>
-          <td>${scoreTag(r.f5, r.f5Pts)}</td>
-          <td><span class="tag">${fmtInt.format(n(r.f6))}</span></td>
-          <td>${fmtInt.format(n(r.ptsBra))}</td>
-          <td>${fmtInt.format(n(r.faixas))}</td>
-          <td>${fmtPct.format(n(r.aprovPts))}</td>
-          <td>${fmtInt.format(n(r.deltaLider))}</td>
-          <td>${fmtInt.format(n(r.deltaAcima))}</td>
-        </tr>`).join('');
-    }
-    document.querySelectorAll('th[data-sort]').forEach(th => {
-      th.addEventListener('click', () => {
-        const key = th.dataset.sort;
-        if (state.sortKey === key) state.sortDir *= -1; else { state.sortKey = key; state.sortDir = 1; byId('sort').value = key; }
-        renderTable();
-      });
-    });
-    byId('search').addEventListener('input', e => { state.query = e.target.value; renderTable(); });
-    byId('sort').addEventListener('change', e => { state.sortKey = e.target.value; state.sortDir = 1; renderTable(); });
-    byId('reset').addEventListener('click', () => { state.query = ''; state.sortKey = 'pontos'; state.sortDir = 1; byId('search').value = ''; byId('sort').value = 'pontos'; renderTable(); });
-    renderHeader(); renderCards(); renderPodium(); renderHighlights(); renderTable();
-  </script>
+<script>
+const DATA = {"meta": {"edicao": "Bolão Copa do Mundo 2026", "geradoEm": "15/06/2026", "participantes": 55, "jogosRealizados": 12, "jogosTotal": 104, "jogosRestantes": 92, "maxPtsDisputados": 650, "pontosLider": 241, "lideres": ["Diego Gonzatto"], "mediaPontos": 132.27}, "destaques": [{"ordem": 1, "tipo": "positivo", "titulo": "Camisa 10", "participantes": "Diego Gonzatto", "valor": "241 pts", "subvalor": "Líder geral", "criterio": "Maior pontuação total"}, {"ordem": 2, "tipo": "positivo", "titulo": "Mira Calibrada", "participantes": "João Gabriel e Manu Porto", "valor": "3 placares exatos", "subvalor": "Faixa 1", "criterio": "Maior nº de placares exatos"}, {"ordem": 3, "tipo": "positivo", "titulo": "Aproveitamento de Elite", "participantes": "Diego Gonzatto", "valor": "37,1% de aproveitamento", "subvalor": "Pontos / Máx disputados", "criterio": "Maior aproveitamento de pontos"}, {"ordem": 4, "tipo": "positivo", "titulo": "Pontua Sempre", "participantes": "Otavio, Analu e William Gross", "valor": "12/12", "subvalor": "100% de regularidade", "criterio": "Jogos pontuados / jogos realizados"}, {"ordem": 5, "tipo": "positivo", "titulo": "Artilheiro do Vencedor", "participantes": "Sil", "valor": "3 acertos", "subvalor": "Faixa 2", "criterio": "Maior nº de acertos na Faixa 2"}, {"ordem": 6, "tipo": "positivo", "titulo": "Leitor do Jogo", "participantes": "Steve Wonder, o oráculo", "valor": "5 acertos", "subvalor": "Faixa 3", "criterio": "Maior nº de acertos na Faixa 3"}, {"ordem": 7, "tipo": "positivo", "titulo": "Bússola do Resultado", "participantes": "Diego Gonzatto", "valor": "7 acertos", "subvalor": "Faixa 4", "criterio": "Maior nº de acertos na Faixa 4"}, {"ordem": 8, "tipo": "positivo", "titulo": "Caçador do Chorinho", "participantes": "Moisés", "valor": "7 acertos", "subvalor": "Faixa 5", "criterio": "Maior nº de acertos na Faixa 5"}, {"ordem": 9, "tipo": "positivo", "titulo": "Líder Jogos do Brasil", "participantes": "Diego Gonzatto e Moisés", "valor": "100 pts BRA", "subvalor": "Brasil", "criterio": "Maior pontuação em jogos do Brasil"}, {"ordem": 10, "tipo": "negativo", "titulo": "Pé-frio", "participantes": "Freitas", "valor": "7 jogos tudo errado", "subvalor": "Faixa 6", "criterio": "Maior nº de palpites totalmente errados"}, {"ordem": 11, "tipo": "negativo", "titulo": "Lanterna", "participantes": "Cacio", "valor": "34 pts", "subvalor": "Última posição", "criterio": "Menor pontuação total entre quem pontuou"}, {"ordem": 12, "tipo": "positivo", "titulo": "Arrancada da Rodada", "participantes": "Flávia", "valor": "Subiu 26 posições", "subvalor": "Movimento no ranking", "criterio": "Maior subida de posições desde a rodada anterior"}, {"ordem": 14, "tipo": "positivo", "titulo": "Muralha", "participantes": "Otavio, Analu e William Gross", "valor": "0 jogos tudo errado", "subvalor": "Menos zerados", "criterio": "Menos jogos com tudo errado, entre quem palpitou todos os jogos realizados"}, {"ordem": 15, "tipo": "positivo", "titulo": "Em Alta (3 jogos)", "participantes": "Flávia", "valor": "90 pts nos últimos 3 jogos", "subvalor": "Últimos 3 jogos", "criterio": "Maior pontuação nos últimos 3 jogos realizados"}, {"ordem": 16, "tipo": "positivo", "titulo": "Em Alta (5 jogos)", "participantes": "Ck", "valor": "120 pts nos últimos 5 jogos", "subvalor": "Últimos 5 jogos", "criterio": "Maior pontuação nos últimos 5 jogos realizados"}], "ranking": [{"pos": 1, "participante": "Diego Gonzatto", "mov": 0, "pontos": 241, "jogosPts": 11, "f1": 2, "f2": 0, "f3": 1, "f4": 7, "f5": 1, "f6": 1, "ptsBra": 100, "faixas": 4, "aprov": "37%", "aprovNum": 0.37, "atras": 0, "subir": 0, "particip": "100%", "participNum": 1.0}, {"pos": 2, "participante": "João Gabriel", "mov": 0, "pontos": 223, "jogosPts": 10, "f1": 3, "f2": 0, "f3": 3, "f4": 1, "f5": 3, "f6": 2, "ptsBra": 0, "faixas": 4, "aprov": "34%", "aprovNum": 0.34, "atras": 18, "subir": 18, "particip": "100%", "participNum": 1.0}, {"pos": 3, "participante": "Otavio", "mov": 8, "pontos": 219, "jogosPts": 12, "f1": 2, "f2": 1, "f3": 3, "f4": 3, "f5": 3, "f6": 0, "ptsBra": 2, "faixas": 5, "aprov": "34%", "aprovNum": 0.34, "atras": 22, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 4, "participante": "Manu Porto", "mov": 0, "pontos": 194, "jogosPts": 11, "f1": 3, "f2": 0, "f3": 0, "f4": 4, "f5": 4, "f6": 1, "ptsBra": 0, "faixas": 3, "aprov": "30%", "aprovNum": 0.3, "atras": 47, "subir": 25, "particip": "100%", "participNum": 1.0}, {"pos": 4, "participante": "Viccenzo", "mov": 15, "pontos": 194, "jogosPts": 11, "f1": 2, "f2": 0, "f3": 3, "f4": 3, "f5": 3, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "30%", "aprovNum": 0.3, "atras": 47, "subir": 25, "particip": "100%", "participNum": 1.0}, {"pos": 6, "participante": "Analu", "mov": -1, "pontos": 190, "jogosPts": 12, "f1": 2, "f2": 1, "f3": 1, "f4": 4, "f5": 4, "f6": 0, "ptsBra": 2, "faixas": 5, "aprov": "29%", "aprovNum": 0.29, "atras": 51, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 7, "participante": "Moisés", "mov": -4, "pontos": 187, "jogosPts": 11, "f1": 2, "f2": 0, "f3": 1, "f4": 1, "f5": 7, "f6": 1, "ptsBra": 100, "faixas": 4, "aprov": "29%", "aprovNum": 0.29, "atras": 54, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 8, "participante": "Flávia", "mov": 26, "pontos": 183, "jogosPts": 9, "f1": 2, "f2": 0, "f3": 3, "f4": 2, "f5": 2, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "28%", "aprovNum": 0.28, "atras": 58, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 9, "participante": "Tercio Baiano", "mov": -2, "pontos": 182, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 2, "f4": 4, "f5": 2, "f6": 2, "ptsBra": 0, "faixas": 4, "aprov": "28%", "aprovNum": 0.28, "atras": 59, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 10, "participante": "Alex Picolo", "mov": 4, "pontos": 175, "jogosPts": 11, "f1": 2, "f2": 0, "f3": 2, "f4": 3, "f5": 4, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "27%", "aprovNum": 0.27, "atras": 66, "subir": 7, "particip": "100%", "participNum": 1.0}, {"pos": 11, "participante": "Alan Zordan", "mov": -3, "pontos": 174, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 2, "f4": 3, "f5": 3, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "27%", "aprovNum": 0.27, "atras": 67, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 12, "participante": "José", "mov": 6, "pontos": 172, "jogosPts": 7, "f1": 2, "f2": 0, "f3": 3, "f4": 1, "f5": 1, "f6": 5, "ptsBra": 2, "faixas": 4, "aprov": "26%", "aprovNum": 0.26, "atras": 69, "subir": 2, "particip": "100%", "participNum": 1.0}, {"pos": 13, "participante": "Sil", "mov": 0, "pontos": 168, "jogosPts": 10, "f1": 1, "f2": 3, "f3": 1, "f4": 2, "f5": 3, "f6": 2, "ptsBra": 0, "faixas": 5, "aprov": "26%", "aprovNum": 0.26, "atras": 73, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 14, "participante": "Evelyn", "mov": -8, "pontos": 167, "jogosPts": 9, "f1": 2, "f2": 1, "f3": 0, "f4": 4, "f5": 2, "f6": 3, "ptsBra": 0, "faixas": 4, "aprov": "26%", "aprovNum": 0.26, "atras": 74, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 15, "participante": "Jakare", "mov": -6, "pontos": 164, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 2, "f4": 2, "f5": 4, "f6": 2, "ptsBra": 0, "faixas": 4, "aprov": "25%", "aprovNum": 0.25, "atras": 77, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 16, "participante": "William Gross", "mov": -6, "pontos": 161, "jogosPts": 12, "f1": 1, "f2": 1, "f3": 3, "f4": 2, "f5": 5, "f6": 0, "ptsBra": 2, "faixas": 5, "aprov": "25%", "aprovNum": 0.25, "atras": 80, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 17, "participante": "Ck", "mov": 14, "pontos": 155, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 1, "f4": 3, "f5": 4, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "24%", "aprovNum": 0.24, "atras": 86, "subir": 6, "particip": "100%", "participNum": 1.0}, {"pos": 17, "participante": "Jéssica Cavalcanti", "mov": 0, "pontos": 155, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 1, "f4": 3, "f5": 4, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "24%", "aprovNum": 0.24, "atras": 86, "subir": 6, "particip": "100%", "participNum": 1.0}, {"pos": 17, "participante": "Mana", "mov": -2, "pontos": 155, "jogosPts": 11, "f1": 1, "f2": 0, "f3": 4, "f4": 2, "f5": 4, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "24%", "aprovNum": 0.24, "atras": 86, "subir": 6, "particip": "100%", "participNum": 1.0}, {"pos": 20, "participante": "Igão", "mov": -4, "pontos": 152, "jogosPts": 9, "f1": 1, "f2": 2, "f3": 1, "f4": 3, "f5": 2, "f6": 3, "ptsBra": 0, "faixas": 5, "aprov": "23%", "aprovNum": 0.23, "atras": 89, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 21, "participante": "Dom Braga", "mov": -9, "pontos": 148, "jogosPts": 8, "f1": 1, "f2": 1, "f3": 3, "f4": 1, "f5": 2, "f6": 4, "ptsBra": 2, "faixas": 5, "aprov": "23%", "aprovNum": 0.23, "atras": 93, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 22, "participante": "Ildecler", "mov": 5, "pontos": 137, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 1, "f4": 1, "f5": 6, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "21%", "aprovNum": 0.21, "atras": 104, "subir": 11, "particip": "100%", "participNum": 1.0}, {"pos": 23, "participante": "Jeffe", "mov": -4, "pontos": 136, "jogosPts": 11, "f1": 1, "f2": 0, "f3": 3, "f4": 2, "f5": 5, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "21%", "aprovNum": 0.21, "atras": 105, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 24, "participante": "Gabi", "mov": 14, "pontos": 135, "jogosPts": 9, "f1": 2, "f2": 0, "f3": 1, "f4": 1, "f5": 5, "f6": 3, "ptsBra": 0, "faixas": 4, "aprov": "21%", "aprovNum": 0.21, "atras": 106, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 24, "participante": "Junior", "mov": -3, "pontos": 135, "jogosPts": 10, "f1": 2, "f2": 0, "f3": 0, "f4": 3, "f5": 5, "f6": 2, "ptsBra": 0, "faixas": 3, "aprov": "21%", "aprovNum": 0.21, "atras": 106, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 26, "participante": "Cauã", "mov": -5, "pontos": 134, "jogosPts": 9, "f1": 1, "f2": 0, "f3": 3, "f4": 2, "f5": 3, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "21%", "aprovNum": 0.21, "atras": 107, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 26, "participante": "Leo", "mov": -3, "pontos": 134, "jogosPts": 11, "f1": 1, "f2": 0, "f3": 1, "f4": 5, "f5": 4, "f6": 1, "ptsBra": 20, "faixas": 4, "aprov": "21%", "aprovNum": 0.21, "atras": 107, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 28, "participante": "Mattana", "mov": -5, "pontos": 133, "jogosPts": 9, "f1": 1, "f2": 0, "f3": 2, "f4": 4, "f5": 2, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "20%", "aprovNum": 0.2, "atras": 108, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 29, "participante": "Graça", "mov": 14, "pontos": 130, "jogosPts": 11, "f1": 1, "f2": 1, "f3": 0, "f4": 5, "f5": 4, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "20%", "aprovNum": 0.2, "atras": 111, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 29, "participante": "Yuri Belarmino", "mov": -4, "pontos": 130, "jogosPts": 10, "f1": 1, "f2": 1, "f3": 1, "f4": 3, "f5": 4, "f6": 2, "ptsBra": 2, "faixas": 5, "aprov": "20%", "aprovNum": 0.2, "atras": 111, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 31, "participante": "Diogo", "mov": -5, "pontos": 129, "jogosPts": 9, "f1": 1, "f2": 1, "f3": 1, "f4": 3, "f5": 3, "f6": 3, "ptsBra": 2, "faixas": 5, "aprov": "20%", "aprovNum": 0.2, "atras": 112, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 32, "participante": "Cristiano", "mov": -3, "pontos": 125, "jogosPts": 10, "f1": 1, "f2": 0, "f3": 2, "f4": 3, "f5": 4, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "19%", "aprovNum": 0.19, "atras": 116, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 32, "participante": "Emerson FC", "mov": 5, "pontos": 125, "jogosPts": 9, "f1": 1, "f2": 0, "f3": 3, "f4": 1, "f5": 4, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "19%", "aprovNum": 0.19, "atras": 116, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 34, "participante": "Steve Wonder, o oráculo", "mov": -2, "pontos": 124, "jogosPts": 10, "f1": 0, "f2": 0, "f3": 5, "f4": 2, "f5": 3, "f6": 2, "ptsBra": 2, "faixas": 3, "aprov": "19%", "aprovNum": 0.19, "atras": 117, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 35, "participante": "Guetis", "mov": -5, "pontos": 120, "jogosPts": 11, "f1": 0, "f2": 1, "f3": 3, "f4": 3, "f5": 4, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "18%", "aprovNum": 0.18, "atras": 121, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 36, "participante": "Ocimar", "mov": -8, "pontos": 116, "jogosPts": 10, "f1": 1, "f2": 0, "f3": 2, "f4": 2, "f5": 5, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "18%", "aprovNum": 0.18, "atras": 125, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 37, "participante": "Carla", "mov": 8, "pontos": 115, "jogosPts": 9, "f1": 1, "f2": 0, "f3": 2, "f4": 2, "f5": 4, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "18%", "aprovNum": 0.18, "atras": 126, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 37, "participante": "Rovaris", "mov": 8, "pontos": 115, "jogosPts": 9, "f1": 1, "f2": 0, "f3": 2, "f4": 2, "f5": 4, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "18%", "aprovNum": 0.18, "atras": 126, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 39, "participante": "Xanda", "mov": -7, "pontos": 105, "jogosPts": 9, "f1": 1, "f2": 0, "f3": 1, "f4": 3, "f5": 4, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "16%", "aprovNum": 0.16, "atras": 136, "subir": 10, "particip": "100%", "participNum": 1.0}, {"pos": 40, "participante": "Dudasccp", "mov": -5, "pontos": 101, "jogosPts": 11, "f1": 0, "f2": 1, "f3": 2, "f4": 3, "f5": 5, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "16%", "aprovNum": 0.16, "atras": 140, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 41, "participante": "Katia", "mov": 9, "pontos": 100, "jogosPts": 10, "f1": 0, "f2": 1, "f3": 2, "f4": 3, "f5": 4, "f6": 2, "ptsBra": 2, "faixas": 4, "aprov": "15%", "aprovNum": 0.15, "atras": 141, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 42, "participante": "Misael Alves", "mov": -2, "pontos": 99, "jogosPts": 9, "f1": 0, "f2": 1, "f3": 3, "f4": 1, "f5": 4, "f6": 3, "ptsBra": 0, "faixas": 4, "aprov": "15%", "aprovNum": 0.15, "atras": 142, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 43, "participante": "Professor Pardal", "mov": -7, "pontos": 96, "jogosPts": 7, "f1": 0, "f2": 1, "f3": 1, "f4": 4, "f5": 1, "f6": 5, "ptsBra": 20, "faixas": 4, "aprov": "15%", "aprovNum": 0.15, "atras": 145, "subir": 3, "particip": "100%", "participNum": 1.0}, {"pos": 44, "participante": "Luís", "mov": -3, "pontos": 92, "jogosPts": 8, "f1": 0, "f2": 0, "f3": 3, "f4": 3, "f5": 2, "f6": 2, "ptsBra": 0, "faixas": 3, "aprov": "14%", "aprovNum": 0.14, "atras": 149, "subir": 4, "particip": "83%", "participNum": 0.83}, {"pos": 44, "participante": "Mestre", "mov": 9, "pontos": 92, "jogosPts": 9, "f1": 1, "f2": 1, "f3": 0, "f4": 1, "f5": 6, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "14%", "aprovNum": 0.14, "atras": 149, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 44, "participante": "Valéria", "mov": -2, "pontos": 92, "jogosPts": 11, "f1": 0, "f2": 1, "f3": 2, "f4": 2, "f5": 6, "f6": 1, "ptsBra": 2, "faixas": 4, "aprov": "14%", "aprovNum": 0.14, "atras": 149, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 47, "participante": "Lucas Rovaris", "mov": -3, "pontos": 87, "jogosPts": 7, "f1": 0, "f2": 1, "f3": 2, "f4": 2, "f5": 2, "f6": 5, "ptsBra": 0, "faixas": 4, "aprov": "13%", "aprovNum": 0.13, "atras": 154, "subir": 5, "particip": "100%", "participNum": 1.0}, {"pos": 48, "participante": "Comentarista Tabajara", "mov": -9, "pontos": 79, "jogosPts": 7, "f1": 0, "f2": 1, "f3": 2, "f4": 1, "f5": 3, "f6": 5, "ptsBra": 2, "faixas": 4, "aprov": "12%", "aprovNum": 0.12, "atras": 162, "subir": 8, "particip": "100%", "participNum": 1.0}, {"pos": 49, "participante": "Zebra", "mov": -1, "pontos": 72, "jogosPts": 7, "f1": 0, "f2": 0, "f3": 2, "f4": 3, "f5": 2, "f6": 5, "ptsBra": 0, "faixas": 3, "aprov": "11%", "aprovNum": 0.11, "atras": 169, "subir": 7, "particip": "100%", "participNum": 1.0}, {"pos": 50, "participante": "Pâm", "mov": -1, "pontos": 71, "jogosPts": 10, "f1": 0, "f2": 1, "f3": 0, "f4": 4, "f5": 5, "f6": 2, "ptsBra": 2, "faixas": 3, "aprov": "11%", "aprovNum": 0.11, "atras": 170, "subir": 1, "particip": "100%", "participNum": 1.0}, {"pos": 51, "participante": "Tainan Dener", "mov": 0, "pontos": 69, "jogosPts": 8, "f1": 0, "f2": 1, "f3": 0, "f4": 4, "f5": 3, "f6": 4, "ptsBra": 2, "faixas": 3, "aprov": "11%", "aprovNum": 0.11, "atras": 172, "subir": 2, "particip": "100%", "participNum": 1.0}, {"pos": 52, "participante": "Soveral", "mov": -7, "pontos": 65, "jogosPts": 9, "f1": 0, "f2": 0, "f3": 1, "f4": 4, "f5": 4, "f6": 3, "ptsBra": 2, "faixas": 3, "aprov": "10%", "aprovNum": 0.1, "atras": 176, "subir": 4, "particip": "100%", "participNum": 1.0}, {"pos": 53, "participante": "Lise", "mov": -1, "pontos": 47, "jogosPts": 10, "f1": 0, "f2": 0, "f3": 0, "f4": 4, "f5": 6, "f6": 2, "ptsBra": 2, "faixas": 2, "aprov": "07%", "aprovNum": 0.07, "atras": 194, "subir": 18, "particip": "100%", "participNum": 1.0}, {"pos": 54, "participante": "Freitas", "mov": 1, "pontos": 42, "jogosPts": 5, "f1": 0, "f2": 0, "f3": 1, "f4": 2, "f5": 2, "f6": 7, "ptsBra": 0, "faixas": 3, "aprov": "06%", "aprovNum": 0.06, "atras": 199, "subir": 5, "particip": "100%", "participNum": 1.0}, {"pos": 55, "participante": "Cacio", "mov": -1, "pontos": 34, "jogosPts": 7, "f1": 0, "f2": 0, "f3": 0, "f4": 3, "f5": 4, "f6": 5, "ptsBra": 0, "faixas": 2, "aprov": "05%", "aprovNum": 0.05, "atras": 207, "subir": 8, "particip": "100%", "participNum": 1.0}], "cards": {"maiorSubida": {"pos": 8, "participante": "Flávia", "mov": 26, "pontos": 183, "jogosPts": 9, "f1": 2, "f2": 0, "f3": 3, "f4": 2, "f5": 2, "f6": 3, "ptsBra": 2, "faixas": 4, "aprov": "28%", "aprovNum": 0.28, "atras": 58, "subir": 4, "particip": "100%", "participNum": 1.0}, "maiorQueda": {"pos": 21, "participante": "Dom Braga", "mov": -9, "pontos": 148, "jogosPts": 8, "f1": 1, "f2": 1, "f3": 3, "f4": 1, "f5": 2, "f6": 4, "ptsBra": 2, "faixas": 5, "aprov": "23%", "aprovNum": 0.23, "atras": 93, "subir": 4, "particip": "100%", "participNum": 1.0}, "regularsCount": 3}};
+const state = { rows: DATA.ranking || [], sortKey:'pontos', sortDir:1, query:'' };
+const fmtInt = new Intl.NumberFormat('pt-BR', {maximumFractionDigits:0});
+const fmtDec = new Intl.NumberFormat('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1});
+const pct = new Intl.NumberFormat('pt-BR', {style:'percent', minimumFractionDigits:0, maximumFractionDigits:1});
+const byId = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const n = (v,f=0) => { const x = Number(v); return Number.isFinite(x) ? x : f; };
+function move(v) { const x=n(v); if(x>0) return `<span class="movement up">▲ +${fmtInt.format(x)}</span>`; if(x<0) return `<span class="movement down">▼ ${fmtInt.format(Math.abs(x))}</span>`; return '<span class="movement same">• 0</span>'; }
+function medal(pos) { if(pos===1) return '<span class="medal gold">1</span>'; if(pos===2) return '<span class="medal silver">2</span>'; if(pos===3) return '<span class="medal bronze">3</span>'; return `<span class="medal neutral">${pos}</span>`; }
+function renderHeader() { const m=DATA.meta; const done=n(m.jogosRealizados), total=n(m.jogosTotal), p=total?done/total:0; byId('edition').textContent=m.edicao; byId('updated').textContent=`Atualização: ${m.geradoEm}`; byId('games').textContent=`Jogos: ${done}/${total}`; byId('participants').textContent=`Participantes: ${m.participantes}`; byId('maxPoints').textContent=`Máx. disputado: ${fmtInt.format(m.maxPtsDisputados)} pts`; byId('progressBar').style.width=(p*100)+'%'; byId('progressText').textContent=`${done} de ${total} jogos (${pct.format(p)})`; }
+function renderCards() { const c=DATA.cards, m=DATA.meta; const cards=[['Líder', m.lideres.join(' e '), `${fmtInt.format(m.pontosLider)} pontos`], ['Maior subida', c.maiorSubida.participante, `subiu ${fmtInt.format(c.maiorSubida.mov)} posições`], ['Maior queda', c.maiorQueda.participante, `desceu ${fmtInt.format(Math.abs(c.maiorQueda.mov))} posições`], ['Média geral', fmtDec.format(m.mediaPontos), 'pontos por participante']]; byId('cards').innerHTML=cards.map(([l,v,no],i)=>`<div class="card ${i==0?'strong':''}"><div class="label">${esc(l)}</div><div class="value">${esc(v)}</div><div class="note">${esc(no)}</div></div>`).join(''); }
+function topRows() { const ranks=[...new Set(state.rows.map(r=>r.pos))].sort((a,b)=>a-b).slice(0,3); return state.rows.filter(r=>ranks.includes(r.pos)).sort((a,b)=>a.pos-b.pos || b.pontos-a.pontos || a.participante.localeCompare(b.participante,'pt-BR')); }
+function renderPodium() { byId('podium').innerHTML=topRows().map(r=>`<div class="podium-card ${r.pos===1?'first':''}"><div class="podium-rank ${r.pos===1?'gold':r.pos===2?'silver':'bronze'}">${r.pos}</div><div class="podium-name">${esc(r.participante)}</div><div class="podium-points">${fmtInt.format(r.pontos)} pts</div>${move(r.mov)}</div>`).join(''); }
+function hCard(h) { return `<div class="highlight ${h.tipo==='negativo'?'neg':''}"><div><div class="highlight-title">${esc(h.titulo)}</div><div class="highlight-name">${esc(h.participantes)}</div></div><div><div class="highlight-value">${esc(h.valor)}</div><div class="highlight-crit">${esc(h.subvalor || h.criterio)}</div></div></div>`; }
+function renderHighlights() { const hs=DATA.destaques||[]; const mainNames=['Camisa 10','Mira Calibrada','Aproveitamento de Elite','Pontua Sempre','Arrancada da Rodada','Em Alta (3 jogos)']; const main=hs.filter(h=>mainNames.includes(h.titulo)); const other=hs.filter(h=>!mainNames.includes(h.titulo)); byId('mainHighlights').innerHTML=main.map(hCard).join(''); byId('otherHighlights').innerHTML=other.map(hCard).join(''); }
+function tag(v) { return `<span class="tag">${fmtInt.format(n(v))}</span>`; }
+function sortRows(rows) { const key=state.sortKey; return [...rows].sort((a,b)=>{ if(key==='participante') return a.participante.localeCompare(b.participante,'pt-BR')*state.sortDir; if(key==='pos') return (a.pos-b.pos)*state.sortDir || b.pontos-a.pontos; const va=n(a[key]), vb=n(b[key]); return (vb-va)*state.sortDir || a.pos-b.pos || a.participante.localeCompare(b.participante,'pt-BR'); }); }
+function filteredRows() { const q=state.query.trim().toLowerCase(); return sortRows(state.rows.filter(r=>!q || r.participante.toLowerCase().includes(q))); }
+function renderTable() { const rows=filteredRows(); byId('tbody').innerHTML=rows.map(r=>`<tr><td>${medal(r.pos)}</td><td><div class="participant">${esc(r.participante)}</div></td><td>${move(r.mov)}</td><td class="points">${fmtInt.format(r.pontos)}</td><td>${fmtInt.format(r.jogosPts)}</td><td>${tag(r.f1)}</td><td>${tag(r.f2)}</td><td>${tag(r.f3)}</td><td>${tag(r.f4)}</td><td>${tag(r.f5)}</td><td>${tag(r.f6)}</td><td>${fmtInt.format(r.ptsBra)}</td><td>${fmtInt.format(r.faixas)}</td><td>${esc(r.aprov)}</td><td>${fmtInt.format(r.atras)}</td><td>${fmtInt.format(r.subir)}</td></tr>`).join(''); renderMobile(rows); }
+function renderMobile(rows) { byId('mobileList').innerHTML=rows.map(r=>`<div class="mobile-card"><div class="mobile-head"><div><div>${medal(r.pos)} ${move(r.mov)}</div><div class="mobile-name">${esc(r.participante)}</div></div><div class="mobile-points">${fmtInt.format(r.pontos)} pts</div></div><div class="mini"><div><span>Jogos pts</span><strong>${r.jogosPts}</strong></div><div><span>F1</span><strong>${r.f1}</strong></div><div><span>Aprov.</span><strong>${esc(r.aprov)}</strong></div><div><span>F2/F3/F4</span><strong>${r.f2}/${r.f3}/${r.f4}</strong></div><div><span>F5/F6</span><strong>${r.f5}/${r.f6}</strong></div><div><span>Brasil</span><strong>${r.ptsBra}</strong></div></div></div>`).join(''); }
+document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{ const key=th.dataset.sort; if(state.sortKey===key) state.sortDir*=-1; else {state.sortKey=key; state.sortDir=1; byId('sort').value=key;} renderTable(); }));
+byId('search').addEventListener('input',e=>{state.query=e.target.value; renderTable();}); byId('sort').addEventListener('change',e=>{state.sortKey=e.target.value; state.sortDir=1; renderTable();}); byId('reset').addEventListener('click',()=>{state.query='';state.sortKey='pontos';state.sortDir=1;byId('search').value='';byId('sort').value='pontos';renderTable();});
+renderHeader(); renderCards(); renderPodium(); renderHighlights(); renderTable();
+</script>
 </body>
 </html>
