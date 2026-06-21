@@ -6,110 +6,129 @@
 <title>Ranking Geral — Bolão Copa do Mundo 2026</title>
 <style>
 :root {
-  --bg:#07111f; --bg2:#0e2a35; --panel:rgba(255,255,255,.085); --panel2:rgba(255,255,255,.13);
-  --text:#f8fafc; --muted:#b8c4d1; --line:rgba(255,255,255,.15); --gold:#f8c94d; --silver:#dbe4ef;
-  --bronze:#c77b45; --green:#21c277; --red:#ef4b5c; --blue:#45c7ff; --purple:#a78bfa; --shadow:0 22px 70px rgba(0,0,0,.38);
+  --bg:#f4f8ff;
+  --bg-soft:#eef6ff;
+  --panel:#ffffff;
+  --panel-2:#f8fbff;
+  --text:#172033;
+  --muted:#64748b;
+  --line:#d9e4f2;
+  --line-strong:#bfd0e6;
+  --gold:#f6c343;
+  --gold-soft:#fff4cc;
+  --silver:#dce6f3;
+  --bronze:#d39a63;
+  --green:#18a56f;
+  --green-soft:#e8f8ef;
+  --red:#d94b59;
+  --red-soft:#fff0f2;
+  --blue:#2475d1;
+  --blue-soft:#e8f2ff;
+  --purple:#7c5bd6;
+  --purple-soft:#f0edff;
+  --shadow:0 18px 50px rgba(44,78,120,.14);
   --radius:22px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0; min-height:100vh; color:var(--text);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   background:
-    radial-gradient(circle at 8% 0%,rgba(69,199,255,.24),transparent 30rem),
-    radial-gradient(circle at 92% 6%,rgba(248,201,77,.20),transparent 28rem),
-    radial-gradient(circle at 55% 100%,rgba(33,194,119,.14),transparent 34rem),
-    linear-gradient(135deg,var(--bg) 0%,#0b1c2e 52%,var(--bg2) 100%);
+    radial-gradient(circle at 7% 0%, rgba(36,117,209,.16), transparent 25rem),
+    radial-gradient(circle at 92% 4%, rgba(246,195,67,.18), transparent 27rem),
+    linear-gradient(180deg, var(--bg) 0%, #ffffff 52%, var(--bg-soft) 100%);
 }
-.wrap{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:28px 0 56px}
-.hero{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:clamp(20px,4vw,38px);background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.055));box-shadow:var(--shadow)}
-.hero:before{content:"";position:absolute;inset:-1px;z-index:-1;background:linear-gradient(120deg,rgba(248,201,77,.18),transparent 38%,rgba(69,199,255,.17))}
-.hero:after{content:"⚽";position:absolute;right:20px;top:2px;font-size:120px;opacity:.075;transform:rotate(-12deg)}
-.eyebrow{color:var(--gold);font-weight:950;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;margin-bottom:10px}
-h1{margin:0;font-size:clamp(2.1rem,6vw,4.7rem);line-height:.95;letter-spacing:-.065em}
-.sub{color:var(--muted);margin-top:14px;font-size:1.03rem;max-width:930px;line-height:1.55}
+.wrap{width:min(1240px,calc(100% - 28px));margin:0 auto;padding:26px 0 54px}
+.hero{
+  position:relative; overflow:hidden; border:1px solid var(--line); border-radius:30px;
+  padding:clamp(20px,4vw,38px); background:linear-gradient(135deg,#ffffff 0%,#f7fbff 58%,#edf6ff 100%);
+  box-shadow:var(--shadow);
+}
+.hero:after{content:"⚽";position:absolute;right:20px;top:0;font-size:120px;opacity:.075;transform:rotate(-12deg)}
+.eyebrow{color:var(--blue);font-weight:950;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;margin-bottom:10px}
+h1{margin:0;font-size:clamp(2.05rem,6vw,4.4rem);line-height:.95;letter-spacing:-.06em;color:#0f172a}
+.sub{color:var(--muted);margin-top:14px;font-size:1.02rem;max-width:970px;line-height:1.55}
 .meta-line{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.pill{border:1px solid var(--line);background:rgba(255,255,255,.095);border-radius:999px;padding:8px 13px;font-size:.88rem;white-space:nowrap}
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.16)}
-.card.featured{background:linear-gradient(135deg,rgba(248,201,77,.17),rgba(255,255,255,.075))}
-.card.good{background:linear-gradient(135deg,rgba(33,194,119,.15),rgba(255,255,255,.06))}
-.card.blue{background:linear-gradient(135deg,rgba(69,199,255,.14),rgba(255,255,255,.06))}
-.card.purple{background:linear-gradient(135deg,rgba(167,139,250,.16),rgba(255,255,255,.06))}
+.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:.88rem;white-space:nowrap;color:#334155;box-shadow:0 5px 20px rgba(44,78,120,.06)}
+.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(44,78,120,.09)}
+.card.featured{background:linear-gradient(135deg,#ffffff,var(--gold-soft))}
+.card.good{background:linear-gradient(135deg,#ffffff,var(--green-soft))}
+.card.blue{background:linear-gradient(135deg,#ffffff,var(--blue-soft))}
+.card.purple{background:linear-gradient(135deg,#ffffff,var(--purple-soft))}
 .label{color:var(--muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.075em;margin-bottom:7px;font-weight:850}
-.value{font-size:clamp(1.12rem,2.45vw,1.85rem);font-weight:950;letter-spacing:-.04em;line-height:1.05}
-.note{color:var(--gold);font-size:.96rem;margin-top:8px;font-weight:900;line-height:1.25}
-.featured-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.value{font-size:clamp(1.12rem,2.35vw,1.74rem);font-weight:950;letter-spacing:-.04em;line-height:1.08;color:#111827}
+.note{color:#9a6a00;font-size:.96rem;margin-top:8px;font-weight:900;line-height:1.25}
+.highlight-sub{color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.28}
 .top-area{display:block;margin-bottom:18px}
 .podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.podium-card{border:1px solid var(--line);background:rgba(255,255,255,.075);border-radius:18px;padding:15px;text-align:center}
-.podium-card.first{background:linear-gradient(180deg,rgba(248,201,77,.25),rgba(255,255,255,.075))}
+.podium-card{border:1px solid var(--line);background:linear-gradient(180deg,#ffffff,#f7fbff);border-radius:18px;padding:15px;text-align:center;box-shadow:0 8px 24px rgba(44,78,120,.08)}
+.podium-card.first{background:linear-gradient(180deg,var(--gold-soft),#ffffff)}
 .podium-rank{width:38px;height:38px;border-radius:999px;display:inline-grid;place-items:center;font-weight:950;color:#111827;margin-bottom:8px}
 .podium-name{font-weight:950;font-size:1.04rem;line-height:1.18}
-.podium-points{color:var(--gold);font-weight:950;margin-top:7px;font-size:1.25rem}
+.podium-points{color:#9a6a00;font-weight:950;margin-top:7px;font-size:1.25rem}
+.gold{background:var(--gold)} .silver{background:var(--silver)} .bronze{background:var(--bronze);color:#fff}
 .section-title{display:flex;justify-content:space-between;gap:12px;align-items:end;margin:22px 0 10px}
-.section-title h2,.toolbar h2{margin:0;font-size:1.38rem;letter-spacing:-.035em}
+.section-title h2,.toolbar h2{margin:0;font-size:1.38rem;letter-spacing:-.035em;color:#0f172a}
 .legend,.section-title p{color:var(--muted);font-size:.86rem;line-height:1.5;margin:4px 0 0}
 .high-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.highlight{border:1px solid var(--line);background:rgba(255,255,255,.075);border-radius:18px;padding:14px;min-height:128px;display:flex;flex-direction:column;justify-content:space-between}
-.highlight.negativo{background:linear-gradient(135deg,rgba(239,75,92,.13),rgba(255,255,255,.055))}
-.highlight.positivo{background:linear-gradient(135deg,rgba(33,194,119,.10),rgba(255,255,255,.06))}
+.highlight{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;min-height:128px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 24px rgba(44,78,120,.06)}
+.highlight.negativo{background:linear-gradient(135deg,#fff,var(--red-soft))}
+.highlight.positivo{background:linear-gradient(135deg,#fff,var(--green-soft))}
 .highlight-title{font-size:.82rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.055em}
-.highlight-name{font-weight:950;font-size:1.02rem;margin-top:8px;line-height:1.22}
-.highlight-value{color:var(--gold);font-weight:950;margin-top:10px}
-.highlight-sub{color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.25}
+.highlight-name{font-weight:950;font-size:1.02rem;margin-top:8px;line-height:1.22;color:#111827}
+.highlight-value{color:#9a6a00;font-weight:950;margin-top:10px}
 .toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;margin:22px 0 12px}
 .controls{display:flex;gap:8px;flex-wrap:wrap}
-input,select,button{font:inherit;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--text);padding:10px 12px;outline:none}
-input::placeholder{color:rgba(255,255,255,.55)} select option{color:#111827} button{cursor:pointer} button:hover,input:focus,select:focus{border-color:rgba(248,201,77,.72)}
-.table-card{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
-.table-scroll{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:1080px}
-th,td{padding:11px 9px;border-bottom:1px solid rgba(255,255,255,.08);text-align:right;white-space:nowrap}
-th{position:sticky;top:0;z-index:1;background:rgba(8,20,35,.985);color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;user-select:none;line-height:1.05}
-th.wrap-head{white-space:normal;min-width:62px;max-width:86px;text-align:center}
+input,select,button{font:inherit;border-radius:12px;border:1px solid var(--line-strong);background:#fff;color:var(--text);padding:10px 12px;outline:none}
+input::placeholder{color:#94a3b8} select option{color:#111827} button{cursor:pointer;font-weight:850} button:hover,input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(36,117,209,.12)}
+.table-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:980px;background:#fff}
+th,td{padding:10px 8px;border-bottom:1px solid #e7eef8;text-align:right;white-space:nowrap}
+th{position:sticky;top:0;z-index:3;background:#eaf3ff;color:#334155;font-size:.70rem;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;user-select:none;line-height:1.08;border-bottom:1px solid var(--line-strong)}
+tbody tr:nth-child(even){background:#f8fbff}
+tbody tr:hover{background:#fff8db}
 th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
-tbody tr:hover{background:rgba(255,255,255,.055)}
-.participant{font-weight:900}
-.points{color:var(--gold);font-weight:950;font-size:1.06rem}
-.tag{display:inline-block;min-width:34px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.095);border:1px solid rgba(255,255,255,.10);text-align:center;font-weight:850}
+th:first-child,td:first-child{position:sticky;left:0;z-index:2;background:inherit}
+th:nth-child(2),td:nth-child(2){position:sticky;left:54px;z-index:2;background:inherit;box-shadow:8px 0 12px rgba(44,78,120,.055)}
+th:first-child,th:nth-child(2){z-index:4;background:#eaf3ff}
+.participant{font-weight:900;max-width:190px;overflow:hidden;text-overflow:ellipsis}
+.points{color:#9a6a00;font-weight:950;font-size:1.06rem}
+.tag{display:inline-block;min-width:32px;padding:4px 8px;border-radius:999px;background:#f1f5f9;border:1px solid #dbe5f1;text-align:center;font-weight:850;color:#1e293b}
 .medal{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:950;color:#111827;font-size:.78rem}
-.gold{background:var(--gold)} .silver{background:var(--silver)} .bronze{background:var(--bronze);color:#fff} .neutral{background:rgba(255,255,255,.15);color:var(--text);border:1px solid var(--line)}
+.neutral{background:#eef2f7;color:#334155;border:1px solid #d7e1ed}
 .movement{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 8px;font-weight:850;font-size:.82rem}
-.up{color:#bbf7d0;background:rgba(33,194,119,.15);border:1px solid rgba(33,194,119,.28)} .down{color:#fecaca;background:rgba(239,75,92,.15);border:1px solid rgba(239,75,92,.28)} .same{color:var(--muted);background:rgba(255,255,255,.07);border:1px solid var(--line)}
-.mobile-list{display:none;gap:10px}
-.mobile-card{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.075);padding:14px}
-.mobile-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.mobile-pos{color:var(--muted);font-size:.78rem;margin-bottom:3px}
-.mobile-name{font-weight:950;font-size:1.05rem;line-height:1.15}
-.mobile-points{color:var(--gold);font-weight:950;font-size:1.18rem;white-space:nowrap}
-.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}
-.mini div{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);border-radius:12px;padding:7px;text-align:center}
-.mini span{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.04em;line-height:1.05}
-.mini strong{display:block;margin-top:3px}
-.empty{display:none;border:1px dashed var(--line);border-radius:18px;padding:20px;text-align:center;color:var(--muted);background:rgba(255,255,255,.05)}
+.up{color:#137a55;background:var(--green-soft);border:1px solid #bfead2} .down{color:#b42336;background:var(--red-soft);border:1px solid #ffd1d6} .same{color:#64748b;background:#f1f5f9;border:1px solid #dbe5f1}
+.empty{display:none;border:1px dashed var(--line);border-radius:18px;padding:20px;text-align:center;color:var(--muted);background:#fff;margin-top:10px}
 .footer{color:var(--muted);font-size:.86rem;margin-top:14px;line-height:1.5}
-@media(max-width:1120px){.summary-grid,.featured-grid{grid-template-columns:repeat(2,1fr)}.high-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:760px){
-  .wrap{width:min(100% - 14px,1240px);padding-top:calc(12px + env(safe-area-inset-top));}
-  .hero{border-radius:22px}
-  .summary-grid,.featured-grid,.podium,.high-grid{grid-template-columns:1fr}
+.mobile-hint{display:none;color:#64748b;font-size:.78rem;margin-top:8px}
+@media(max-width:1120px){.featured-grid{grid-template-columns:repeat(3,1fr)}.high-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){
+  .wrap{width:min(100% - 12px,1240px);padding-top:calc(12px + env(safe-area-inset-top));}
+  .hero{border-radius:22px;padding:18px}
+  .hero:after{font-size:80px;right:8px;top:8px}
+  .featured-grid,.podium,.high-grid{grid-template-columns:1fr}
   .controls,input,select,button{width:100%}
-  .table-card{display:block;border-radius:18px;overflow:hidden}
-  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{min-width:980px;font-size:.86rem}
-  th,td{padding:8px 6px}
-  th{font-size:.64rem;letter-spacing:.025em}
-  th.wrap-head{min-width:58px;max-width:72px}
-  .participant{font-size:.88rem}
-  .points{font-size:.95rem}
-  .tag{min-width:28px;padding:3px 6px}
-  .medal{width:24px;height:24px;font-size:.72rem}
-  .movement{padding:3px 6px;font-size:.74rem}
-  .mobile-list{display:none!important}
-  .section-title{display:block}.section-title p{margin-top:4px}
-  .hero:after{font-size:82px;right:10px;top:10px}
+  .section-title{display:block}
+  .mobile-hint{display:block}
+  .table-card{border-radius:16px}
+  table{min-width:860px;font-size:.78rem}
+  th,td{padding:7px 5px}
+  th{font-size:.58rem;letter-spacing:.02em}
+  .participant{font-size:.78rem;max-width:126px}
+  .points{font-size:.88rem}
+  .tag{min-width:24px;padding:2px 5px}
+  .medal{width:22px;height:22px;font-size:.68rem}
+  .movement{padding:2px 5px;font-size:.68rem}
+  th:nth-child(2),td:nth-child(2){left:38px}
+}
+@media(max-width:430px){
+  table{min-width:820px;font-size:.73rem}
+  th,td{padding:6px 4px}
+  .participant{max-width:106px}
+  th:nth-child(2),td:nth-child(2){left:34px}
 }
 </style>
 </head>
@@ -118,15 +137,14 @@ tbody tr:hover{background:rgba(255,255,255,.055)}
 <header class="hero">
   <div class="eyebrow">Bolão Copa do Mundo 2026</div>
   <h1>Ranking Geral</h1>
-  <div class="sub">Classificação atualizada do bolão, com visual mais claro, pódio, movimentação, pontuação nos jogos do Brasil e destaques do momento. Os números exibidos foram carregados exclusivamente dos CSVs enviados.</div>
+  <div class="sub">Classificação atualizada do bolão com visual mais claro, pódio, movimentação e destaques do momento. Os dados de pontuação e de destaques foram carregados exclusivamente dos CSVs enviados.</div>
   <div class="meta-line">
     <span class="pill">Base: Ranking CSV + Destaques CSV</span>
-    <span class="pill">Jogos considerados: 32</span>
+    <span class="pill">Jogos considerados: 36</span>
     <span class="pill">Participantes: 55</span>
-    <span class="pill">Destaques ativos: 12</span>
+    <span class="pill">Destaques exibidos: 11</span>
   </div>
 </header>
-
 
 <section class="featured-grid" id="featuredGrid" aria-label="Destaques em evidência"></section>
 
@@ -138,39 +156,42 @@ tbody tr:hover{background:rgba(255,255,255,.055)}
 </section>
 
 <div class="toolbar">
-  <div><h2>Classificação completa</h2><div class="legend">Use a busca e a ordenação para consultar participantes, pontos, regularidade e critérios de pontuação. No celular, a tabela pode ser arrastada para o lado.</div></div>
+  <div>
+    <h2>Classificação completa</h2>
+    <div class="legend">Ranking em tabela clássica, com linhas e colunas, inclusive no celular. Toque nos cabeçalhos para ordenar.</div>
+    <div class="mobile-hint">No celular, arraste a tabela para o lado para ver todas as colunas.</div>
+  </div>
   <div class="controls">
     <input id="search" placeholder="Buscar participante..." type="search" />
-    <select id="sort">
+    <select id="sort" aria-label="Ordenação">
       <option value="pontos" selected>Ordenar por pontos</option>
       <option value="pos">Ordenar por posição</option>
       <option value="mov">Ordenar por movimentação</option>
-      <option value="f1">Ordenar por palpite certeiro</option>
+      <option value="palpiteCerteiro">Ordenar por palpite certeiro</option>
       <option value="jogosPts">Ordenar por regularidade</option>
       <option value="ptsBra">Ordenar por pontos Brasil</option>
       <option value="ult7">Ordenar por últimos 7 jogos</option>
-      <option value="f5">Ordenar por chorinho</option>
-      <option value="f6">Ordenar por tudo errado</option>
+      <option value="f5">Ordenar por F5</option>
+      <option value="tudoErrado">Ordenar por tudo errado</option>
     </select>
     <button id="reset" type="button">Limpar</button>
   </div>
 </div>
 
-<div class="table-card"><div class="table-scroll"><table id="rankingTable">
+<div class="table-card"><div class="table-scroll"><table id="rankingTable" aria-label="Tabela de classificação">
   <thead><tr>
     <th data-sort="pos">Pos.</th><th data-sort="participante">Participante</th><th data-sort="mov">Mov.</th><th data-sort="pontos">Pontos</th>
-    <th class="wrap-head" data-sort="jogosPts">Jogos<br>C/ PTS</th><th class="wrap-head" data-sort="f1">Palpite<br>Certeiro</th>
-    <th data-sort="f2">F2</th><th data-sort="f3">F3</th><th data-sort="f4">F4</th><th data-sort="f5">Chorinho</th><th class="wrap-head" data-sort="f6">Tudo<br>Errado</th>
-    <th data-sort="ptsBra">Pts BRA</th><th data-sort="ult7">Últ. 7</th><th data-sort="atras">Atrás líder</th><th data-sort="subir">P/ subir</th><th data-sort="participacao">Particip.</th>
+    <th data-sort="jogosPts">Jogos<br>C/ PTS</th><th data-sort="palpiteCerteiro">Palpite<br>Certeiro</th>
+    <th data-sort="f2">F2</th><th data-sort="f3">F3</th><th data-sort="f4">F4</th><th data-sort="f5">F5</th><th data-sort="tudoErrado">Tudo<br>Errado</th>
+    <th data-sort="ptsBra">PTS<br>BRA</th><th data-sort="ult7">Últ. 7</th><th data-sort="atras">Atrás<br>Líder</th><th data-sort="subir">P/<br>Subir</th>
   </tr></thead>
   <tbody id="rankingBody"></tbody>
 </table></div></div>
-<div class="mobile-list" id="mobileList"></div>
 <div class="empty" id="emptyState">Nenhum participante encontrado para essa busca.</div>
 
 <section>
   <div class="section-title">
-    <div><h2>Outros destaques</h2><p>Demais destaques do bolão, exibidos após a classificação para não saturar o topo. Os destaques já exibidos acima não são repetidos aqui.</p></div>
+    <div><h2>Outros destaques</h2><p>Demais destaques do bolão, exibidos após a classificação para não saturar o topo. As categorias já exibidas acima não são repetidas aqui.</p></div>
   </div>
   <div class="high-grid" id="otherHighlights"></div>
 </section>
@@ -178,16 +199,16 @@ tbody tr:hover{background:rgba(255,255,255,.055)}
 </div>
 
 <script>
-const rankingData = [{"pos":1,"participante":"Otavio","mov":0,"movText":"0","pontos":560,"jogosPts":27,"f1":7,"f2":2,"f3":4,"f4":5,"f5":9,"f6":5,"ptsBra":42,"ult7":72,"atras":0,"subir":0,"participacao":"100%"},{"pos":2,"participante":"Tercio Baiano","mov":0,"movText":"0","pontos":556,"jogosPts":26,"f1":7,"f2":0,"f3":5,"f4":8,"f5":6,"f6":6,"ptsBra":40,"ult7":180,"atras":4,"subir":4,"participacao":"100%"},{"pos":3,"participante":"Analu","mov":5,"movText":"+5","pontos":544,"jogosPts":28,"f1":5,"f2":3,"f3":4,"f4":8,"f5":8,"f6":4,"ptsBra":102,"ult7":195,"atras":16,"subir":12,"participacao":"100%"},{"pos":4,"participante":"Emerson FC","mov":19,"movText":"+19","pontos":489,"jogosPts":26,"f1":4,"f2":0,"f3":9,"f4":5,"f5":8,"f6":6,"ptsBra":102,"ult7":230,"atras":71,"subir":55,"participacao":"100%"},{"pos":5,"participante":"Mattana","mov":20,"movText":"+20","pontos":483,"jogosPts":25,"f1":4,"f2":1,"f3":7,"f4":6,"f5":7,"f6":7,"ptsBra":102,"ult7":230,"atras":77,"subir":6,"participacao":"100%"},{"pos":6,"participante":"Mana","mov":-3,"movText":"-3","pontos":474,"jogosPts":26,"f1":5,"f2":1,"f3":5,"f4":7,"f5":8,"f6":6,"ptsBra":42,"ult7":111,"atras":86,"subir":9,"participacao":"100%"},{"pos":7,"participante":"Misael Alves","mov":5,"movText":"+5","pontos":463,"jogosPts":24,"f1":4,"f2":1,"f3":7,"f4":4,"f5":8,"f6":8,"ptsBra":100,"ult7":171,"atras":97,"subir":11,"participacao":"100%"},{"pos":8,"participante":"Alan Zordan","mov":-3,"movText":"-3","pontos":458,"jogosPts":25,"f1":5,"f2":0,"f3":5,"f4":8,"f5":7,"f6":7,"ptsBra":42,"ult7":111,"atras":102,"subir":5,"participacao":"100%"},{"pos":9,"participante":"Cristiano","mov":6,"movText":"+6","pontos":447,"jogosPts":25,"f1":4,"f2":3,"f3":2,"f4":10,"f5":6,"f6":7,"ptsBra":52,"ult7":110,"atras":113,"subir":11,"participacao":"100%"},{"pos":10,"participante":"Flávia","mov":1,"movText":"+1","pontos":445,"jogosPts":28,"f1":3,"f2":1,"f3":6,"f4":9,"f5":9,"f6":4,"ptsBra":102,"ult7":151,"atras":115,"subir":2,"participacao":"100%"},{"pos":11,"participante":"Dudasccp","mov":9,"movText":"+9","pontos":442,"jogosPts":29,"f1":3,"f2":2,"f3":5,"f4":8,"f5":11,"f6":3,"ptsBra":102,"ult7":176,"atras":118,"subir":3,"participacao":"100%"},{"pos":12,"participante":"Ck","mov":-8,"movText":"-8","pontos":434,"jogosPts":24,"f1":5,"f2":1,"f3":4,"f4":6,"f5":8,"f6":8,"ptsBra":22,"ult7":81,"atras":126,"subir":8,"participacao":"100%"},{"pos":13,"participante":"Cauã","mov":3,"movText":"+3","pontos":428,"jogosPts":24,"f1":3,"f2":0,"f3":8,"f4":6,"f5":7,"f6":8,"ptsBra":102,"ult7":141,"atras":132,"subir":6,"participacao":"100%"},{"pos":14,"participante":"Moisés","mov":-1,"movText":"-1","pontos":421,"jogosPts":27,"f1":4,"f2":0,"f3":3,"f4":9,"f5":11,"f6":5,"ptsBra":120,"ult7":80,"atras":139,"subir":7,"participacao":"100%"},{"pos":15,"participante":"Graça","mov":24,"movText":"+24","pontos":420,"jogosPts":23,"f1":4,"f2":2,"f3":3,"f4":5,"f5":9,"f6":9,"ptsBra":102,"ult7":193,"atras":140,"subir":1,"participacao":"100%"},{"pos":16,"participante":"Pâm","mov":5,"movText":"+5","pontos":415,"jogosPts":29,"f1":4,"f2":3,"f3":2,"f4":6,"f5":14,"f6":3,"ptsBra":52,"ult7":103,"atras":145,"subir":5,"participacao":"100%"},{"pos":17,"participante":"José","mov":-11,"movText":"-11","pontos":411,"jogosPts":22,"f1":3,"f2":2,"f3":6,"f4":6,"f5":5,"f6":10,"ptsBra":52,"ult7":101,"atras":149,"subir":4,"participacao":"100%"},{"pos":18,"participante":"Professor Pardal","mov":12,"movText":"+12","pontos":411,"jogosPts":25,"f1":2,"f2":2,"f3":7,"f4":8,"f5":6,"f6":7,"ptsBra":70,"ult7":171,"atras":149,"subir":0,"participacao":"100%"},{"pos":19,"participante":"William Gross","mov":-9,"movText":"-9","pontos":407,"jogosPts":29,"f1":3,"f2":2,"f3":4,"f4":9,"f5":11,"f6":3,"ptsBra":52,"ult7":111,"atras":153,"subir":4,"participacao":"100%"},{"pos":20,"participante":"Igão","mov":2,"movText":"+2","pontos":402,"jogosPts":25,"f1":3,"f2":3,"f3":3,"f4":9,"f5":7,"f6":7,"ptsBra":40,"ult7":90,"atras":158,"subir":5,"participacao":"100%"},{"pos":21,"participante":"Yuri Belarmino","mov":22,"movText":"+22","pontos":399,"jogosPts":25,"f1":3,"f2":2,"f3":5,"f4":7,"f5":8,"f6":7,"ptsBra":42,"ult7":130,"atras":161,"subir":3,"participacao":"100%"},{"pos":22,"participante":"Diogo","mov":14,"movText":"+14","pontos":391,"jogosPts":25,"f1":3,"f2":2,"f3":3,"f4":7,"f5":10,"f6":7,"ptsBra":102,"ult7":162,"atras":169,"subir":8,"participacao":"100%"},{"pos":23,"participante":"Gabi","mov":6,"movText":"+6","pontos":386,"jogosPts":25,"f1":4,"f2":2,"f3":2,"f4":6,"f5":11,"f6":7,"ptsBra":50,"ult7":137,"atras":174,"subir":5,"participacao":"100%"},{"pos":24,"participante":"Manu Porto","mov":7,"movText":"+7","pontos":386,"jogosPts":27,"f1":3,"f2":1,"f3":3,"f4":9,"f5":11,"f6":5,"ptsBra":100,"ult7":147,"atras":174,"subir":0,"participacao":"100%"},{"pos":25,"participante":"João Gabriel","mov":2,"movText":"+2","pontos":382,"jogosPts":25,"f1":3,"f2":1,"f3":5,"f4":9,"f5":7,"f6":7,"ptsBra":20,"ult7":135,"atras":178,"subir":4,"participacao":"100%"},{"pos":26,"participante":"Viccenzo","mov":-9,"movText":"-9","pontos":382,"jogosPts":26,"f1":2,"f2":1,"f3":6,"f4":11,"f5":6,"f6":6,"ptsBra":42,"ult7":101,"atras":178,"subir":0,"participacao":"100%"},{"pos":27,"participante":"Jakare","mov":17,"movText":"+17","pontos":379,"jogosPts":26,"f1":3,"f2":0,"f3":6,"f4":8,"f5":9,"f6":6,"ptsBra":40,"ult7":161,"atras":181,"subir":3,"participacao":"100%"},{"pos":28,"participante":"Sil","mov":-10,"movText":"-10","pontos":379,"jogosPts":26,"f1":2,"f2":5,"f3":2,"f4":8,"f5":9,"f6":6,"ptsBra":50,"ult7":110,"atras":181,"subir":0,"participacao":"100%"},{"pos":29,"participante":"Rovarinho","mov":6,"movText":"+6","pontos":371,"jogosPts":26,"f1":3,"f2":0,"f3":6,"f4":7,"f5":10,"f6":6,"ptsBra":42,"ult7":141,"atras":189,"subir":8,"participacao":"100%"},{"pos":30,"participante":"Alex Picolo","mov":-11,"movText":"-11","pontos":370,"jogosPts":26,"f1":3,"f2":1,"f3":3,"f4":10,"f5":9,"f6":6,"ptsBra":52,"ult7":101,"atras":190,"subir":1,"participacao":"100%"},{"pos":31,"participante":"Lucas Rovaris","mov":20,"movText":"+20","pontos":370,"jogosPts":24,"f1":1,"f2":3,"f3":7,"f4":8,"f5":5,"f6":8,"ptsBra":40,"ult7":145,"atras":190,"subir":0,"participacao":"100%"},{"pos":32,"participante":"Diego Gonzatto","mov":-25,"movText":"-25","pontos":364,"jogosPts":21,"f1":2,"f2":0,"f3":5,"f4":10,"f5":4,"f6":11,"ptsBra":120,"ult7":61,"atras":196,"subir":6,"participacao":"100%"},{"pos":33,"participante":"LHB","mov":13,"movText":"+13","pontos":364,"jogosPts":23,"f1":2,"f2":1,"f3":5,"f4":11,"f5":4,"f6":7,"ptsBra":50,"ult7":170,"atras":196,"subir":0,"participacao":"94%"},{"pos":34,"participante":"Jéssica Cavalcanti","mov":7,"movText":"+7","pontos":363,"jogosPts":22,"f1":3,"f2":2,"f3":3,"f4":7,"f5":7,"f6":10,"ptsBra":52,"ult7":90,"atras":197,"subir":1,"participacao":"100%"},{"pos":35,"participante":"Valéria","mov":-21,"movText":"-21","pontos":361,"jogosPts":28,"f1":2,"f2":2,"f3":5,"f4":9,"f5":10,"f6":4,"ptsBra":22,"ult7":61,"atras":199,"subir":2,"participacao":"100%"},{"pos":36,"participante":"Ildecler","mov":18,"movText":"+18","pontos":360,"jogosPts":25,"f1":4,"f2":1,"f3":1,"f4":5,"f5":14,"f6":7,"ptsBra":102,"ult7":156,"atras":200,"subir":1,"participacao":"100%"},{"pos":37,"participante":"Evelyn","mov":-28,"movText":"-28","pontos":359,"jogosPts":25,"f1":3,"f2":2,"f3":2,"f4":9,"f5":9,"f6":7,"ptsBra":40,"ult7":62,"atras":201,"subir":1,"participacao":"100%"},{"pos":38,"participante":"Comentarista Tabajara","mov":-1,"movText":"-1","pontos":359,"jogosPts":25,"f1":1,"f2":2,"f3":9,"f4":5,"f5":8,"f6":7,"ptsBra":42,"ult7":130,"atras":201,"subir":0,"participacao":"100%"},{"pos":39,"participante":"Lise","mov":9,"movText":"+9","pontos":358,"jogosPts":27,"f1":3,"f2":1,"f3":4,"f4":7,"f5":12,"f6":5,"ptsBra":42,"ult7":171,"atras":202,"subir":1,"participacao":"100%"},{"pos":40,"participante":"Mestre","mov":-8,"movText":"-8","pontos":350,"jogosPts":25,"f1":4,"f2":1,"f3":3,"f4":3,"f5":14,"f6":7,"ptsBra":42,"ult7":112,"atras":210,"subir":8,"participacao":"100%"},{"pos":41,"participante":"Jeffe","mov":4,"movText":"+4","pontos":340,"jogosPts":26,"f1":2,"f2":0,"f3":6,"f4":9,"f5":9,"f6":6,"ptsBra":42,"ult7":131,"atras":220,"subir":10,"participacao":"100%"},{"pos":42,"participante":"Xanda","mov":-16,"movText":"-16","pontos":333,"jogosPts":22,"f1":3,"f2":1,"f3":3,"f4":8,"f5":7,"f6":10,"ptsBra":22,"ult7":76,"atras":227,"subir":7,"participacao":"100%"},{"pos":43,"participante":"Guetis","mov":-3,"movText":"-3","pontos":326,"jogosPts":27,"f1":2,"f2":1,"f3":4,"f4":10,"f5":10,"f6":5,"ptsBra":22,"ult7":101,"atras":234,"subir":7,"participacao":"100%"},{"pos":44,"participante":"Leo","mov":-10,"movText":"-10","pontos":324,"jogosPts":26,"f1":1,"f2":2,"f3":4,"f4":10,"f5":9,"f6":6,"ptsBra":70,"ult7":91,"atras":236,"subir":2,"participacao":"100%"},{"pos":45,"participante":"Steve Wonder, o oráculo","mov":-21,"movText":"-21","pontos":324,"jogosPts":25,"f1":1,"f2":1,"f3":7,"f4":8,"f5":8,"f6":7,"ptsBra":42,"ult7":70,"atras":236,"subir":0,"participacao":"100%"},{"pos":46,"participante":"Dom Braga","mov":-4,"movText":"-4","pontos":323,"jogosPts":17,"f1":3,"f2":1,"f3":3,"f4":3,"f5":7,"f6":15,"ptsBra":102,"ult7":101,"atras":237,"subir":1,"participacao":"100%"},{"pos":47,"participante":"Zebra","mov":-14,"movText":"-14","pontos":320,"jogosPts":23,"f1":4,"f2":0,"f3":1,"f4":8,"f5":10,"f6":9,"ptsBra":20,"ult7":82,"atras":240,"subir":3,"participacao":"100%"},{"pos":48,"participante":"Ocimar","mov":-20,"movText":"-20","pontos":316,"jogosPts":24,"f1":2,"f2":1,"f3":5,"f4":6,"f5":10,"f6":8,"ptsBra":42,"ult7":73,"atras":244,"subir":4,"participacao":"100%"},{"pos":49,"participante":"Junior","mov":-2,"movText":"-2","pontos":313,"jogosPts":26,"f1":2,"f2":3,"f3":2,"f4":6,"f5":13,"f6":6,"ptsBra":50,"ult7":125,"atras":247,"subir":3,"participacao":"100%"},{"pos":50,"participante":"Freitas","mov":3,"movText":"+3","pontos":312,"jogosPts":19,"f1":2,"f2":1,"f3":4,"f4":5,"f5":7,"f6":13,"ptsBra":100,"ult7":152,"atras":248,"subir":1,"participacao":"100%"},{"pos":51,"participante":"Katia","mov":-14,"movText":"-14","pontos":302,"jogosPts":26,"f1":1,"f2":2,"f3":5,"f4":7,"f5":11,"f6":6,"ptsBra":42,"ult7":73,"atras":258,"subir":10,"participacao":"100%"},{"pos":52,"participante":"Cacio","mov":0,"movText":"0","pontos":274,"jogosPts":24,"f1":0,"f2":3,"f3":5,"f4":7,"f5":9,"f6":8,"ptsBra":40,"ult7":106,"atras":286,"subir":28,"participacao":"100%"},{"pos":53,"participante":"Carla","mov":-4,"movText":"-4","pontos":250,"jogosPts":21,"f1":2,"f2":0,"f3":3,"f4":7,"f5":9,"f6":11,"ptsBra":22,"ult7":72,"atras":310,"subir":24,"participacao":"100%"},{"pos":54,"participante":"Soveral","mov":-4,"movText":"-4","pontos":236,"jogosPts":24,"f1":1,"f2":1,"f3":2,"f4":10,"f5":10,"f6":8,"ptsBra":22,"ult7":60,"atras":324,"subir":14,"participacao":"100%"},{"pos":55,"participante":"Tainan Dener","mov":0,"movText":"0","pontos":235,"jogosPts":26,"f1":0,"f2":2,"f3":0,"f4":15,"f5":9,"f6":6,"ptsBra":52,"ult7":100,"atras":325,"subir":15,"participacao":"100%"}];
-const featuredHighlights = [{"ordem":16,"tipo":"positivo","titulo":"Em Alta (7 jogos)","participantes":"Emerson FC e Mattana","valor":"230 pts nos últimos 7 jogos","subvalor":"Últimos 7 jogos","criterio":"Maior pontuação nos últimos 7 jogos realizados"},{"ordem":12,"tipo":"positivo","titulo":"Arrancada da Rodada","participantes":"Graça","valor":"Subiu 24 posições","subvalor":"Movimento no ranking","criterio":"Maior subida de posições desde a rodada anterior"},{"ordem":4,"tipo":"positivo","titulo":"Pontua Sempre","participantes":"William Gross, Dudasccp e Pâm","valor":"29/32","subvalor":"91% de regularidade","criterio":"Jogos pontuados / jogos realizados"}];
-const otherHighlights = [{"ordem":2,"tipo":"positivo","titulo":"Mira Calibrada","participantes":"Otavio e Tercio Baiano","valor":"7 placares exatos","subvalor":"Faixa 1","criterio":"Maior nº de placares exatos"},{"ordem":5,"tipo":"positivo","titulo":"Artilheiro do Vencedor","participantes":"Sil","valor":"5 acertos","subvalor":"Faixa 2","criterio":"Maior nº de acertos na Faixa 2"},{"ordem":6,"tipo":"positivo","titulo":"Leitor do Jogo","participantes":"Comentarista Tabajara","valor":"9 acertos","subvalor":"Faixa 3","criterio":"Maior nº de acertos na Faixa 3"},{"ordem":7,"tipo":"positivo","titulo":"Bússola do Resultado","participantes":"Tainan Dener","valor":"15 acertos","subvalor":"Faixa 4","criterio":"Maior nº de acertos na Faixa 4"},{"ordem":9,"tipo":"positivo","titulo":"Líder Jogos do Brasil","participantes":"Moisés e Diego Gonzatto","valor":"120 pts BRA","subvalor":"Brasil","criterio":"Maior pontuação em jogos do Brasil"},{"ordem":10,"tipo":"negativo","titulo":"Pé-frio","participantes":"Dom Braga","valor":"15 jogos tudo errado","subvalor":"Faixa 6","criterio":"Maior nº de palpites totalmente errados"},{"ordem":11,"tipo":"negativo","titulo":"Lanterna","participantes":"Tainan Dener","valor":"235 pts","subvalor":"Última posição","criterio":"Menor pontuação total entre quem pontuou"},{"ordem":14,"tipo":"positivo","titulo":"Muralha","participantes":"William Gross, Dudasccp e Pâm","valor":"3 jogos tudo errado","subvalor":"Menos zerados","criterio":"Menos jogos com tudo errado, entre quem palpitou todos os jogos realizados"},{"ordem":15,"tipo":"positivo","titulo":"Modo Turbo","participantes":"Mattana","valor":"170 pts nos últimos 3 jogos","subvalor":"Últimos 3 jogos","criterio":"Maior pontuação nos últimos 3 jogos realizados"}];
-const podiumData = [{"pos":1,"participante":"Otavio","mov":0,"movText":"0","pontos":560,"jogosPts":27,"f1":7,"f2":2,"f3":4,"f4":5,"f5":9,"f6":5,"ptsBra":42,"ult7":72,"atras":0,"subir":0,"participacao":"100%"},{"pos":2,"participante":"Tercio Baiano","mov":0,"movText":"0","pontos":556,"jogosPts":26,"f1":7,"f2":0,"f3":5,"f4":8,"f5":6,"f6":6,"ptsBra":40,"ult7":180,"atras":4,"subir":4,"participacao":"100%"},{"pos":3,"participante":"Analu","mov":5,"movText":"+5","pontos":544,"jogosPts":28,"f1":5,"f2":3,"f3":4,"f4":8,"f5":8,"f6":4,"ptsBra":102,"ult7":195,"atras":16,"subir":12,"participacao":"100%"}];
+const rankingData = [{"pos":1,"participante":"Tercio Baiano","mov":1,"movText":"+1","pontos":646,"jogosPts":29,"palpiteCerteiro":8,"f2":0,"f3":7,"f4":8,"f5":6,"tudoErrado":7,"ptsBra":40,"ult7":160,"atras":0,"subir":0},{"pos":2,"participante":"Otavio","mov":-1,"movText":"-1","pontos":602,"jogosPts":31,"palpiteCerteiro":7,"f2":2,"f3":6,"f4":5,"f5":11,"tudoErrado":5,"ptsBra":42,"ult7":92,"atras":44,"subir":44},{"pos":3,"participante":"Emerson FC","mov":1,"movText":"+1","pontos":580,"jogosPts":30,"palpiteCerteiro":5,"f2":0,"f3":11,"f4":5,"f5":9,"tudoErrado":6,"ptsBra":102,"ult7":221,"atras":66,"subir":22},{"pos":4,"participante":"Analu","mov":-1,"movText":"-1","pontos":575,"jogosPts":31,"palpiteCerteiro":5,"f2":3,"f3":5,"f4":9,"f5":9,"tudoErrado":5,"ptsBra":102,"ult7":171,"atras":71,"subir":5},{"pos":5,"participante":"Mana","mov":1,"movText":"+1","pontos":535,"jogosPts":30,"palpiteCerteiro":5,"f2":1,"f3":8,"f4":7,"f5":9,"tudoErrado":6,"ptsBra":42,"ult7":161,"atras":111,"subir":40},{"pos":6,"participante":"Mattana","mov":-1,"movText":"-1","pontos":534,"jogosPts":29,"palpiteCerteiro":4,"f2":1,"f3":9,"f4":7,"f5":8,"tudoErrado":7,"ptsBra":102,"ult7":221,"atras":112,"subir":1},{"pos":7,"participante":"Misael Alves","mov":0,"movText":"0","pontos":524,"jogosPts":28,"palpiteCerteiro":4,"f2":3,"f3":7,"f4":5,"f5":9,"tudoErrado":8,"ptsBra":100,"ult7":181,"atras":122,"subir":10},{"pos":8,"participante":"Dudasccp","mov":3,"movText":"+3","pontos":503,"jogosPts":33,"palpiteCerteiro":3,"f2":2,"f3":8,"f4":8,"f5":12,"tudoErrado":3,"ptsBra":102,"ult7":172,"atras":143,"subir":21},{"pos":9,"participante":"Alan Zordan","mov":-1,"movText":"-1","pontos":488,"jogosPts":27,"palpiteCerteiro":5,"f2":0,"f3":6,"f4":9,"f5":7,"tudoErrado":9,"ptsBra":42,"ult7":81,"atras":158,"subir":15},{"pos":10,"participante":"Cristiano","mov":-1,"movText":"-1","pontos":488,"jogosPts":29,"palpiteCerteiro":4,"f2":3,"f3":3,"f4":12,"f5":7,"tudoErrado":7,"ptsBra":52,"ult7":111,"atras":158,"subir":0},{"pos":11,"participante":"Cauã","mov":2,"movText":"+2","pontos":478,"jogosPts":27,"palpiteCerteiro":3,"f2":0,"f3":10,"f4":7,"f5":7,"tudoErrado":9,"ptsBra":102,"ult7":161,"atras":168,"subir":10},{"pos":12,"participante":"Ck","mov":0,"movText":"0","pontos":475,"jogosPts":28,"palpiteCerteiro":5,"f2":1,"f3":5,"f4":8,"f5":9,"tudoErrado":8,"ptsBra":22,"ult7":91,"atras":171,"subir":3},{"pos":13,"participante":"Flávia","mov":-3,"movText":"-3","pontos":475,"jogosPts":30,"palpiteCerteiro":3,"f2":1,"f3":7,"f4":10,"f5":9,"tudoErrado":6,"ptsBra":102,"ult7":150,"atras":171,"subir":0},{"pos":14,"participante":"Professor Pardal","mov":4,"movText":"+4","pontos":472,"jogosPts":29,"palpiteCerteiro":2,"f2":2,"f3":10,"f4":8,"f5":7,"tudoErrado":7,"ptsBra":70,"ult7":141,"atras":174,"subir":3},{"pos":15,"participante":"Moisés","mov":-1,"movText":"-1","pontos":461,"jogosPts":30,"palpiteCerteiro":4,"f2":0,"f3":4,"f4":11,"f5":11,"tudoErrado":6,"ptsBra":120,"ult7":90,"atras":185,"subir":11},{"pos":16,"participante":"Gabi","mov":7,"movText":"+7","pontos":458,"jogosPts":29,"palpiteCerteiro":5,"f2":2,"f3":3,"f4":6,"f5":13,"tudoErrado":7,"ptsBra":50,"ult7":173,"atras":188,"subir":3},{"pos":17,"participante":"Ildecler","mov":19,"movText":"+19","pontos":456,"jogosPts":29,"palpiteCerteiro":5,"f2":2,"f3":2,"f4":5,"f5":15,"tudoErrado":7,"ptsBra":102,"ult7":216,"atras":190,"subir":2},{"pos":18,"participante":"Lucas Rovaris","mov":13,"movText":"+13","pontos":451,"jogosPts":28,"palpiteCerteiro":2,"f2":3,"f3":8,"f4":9,"f5":6,"tudoErrado":8,"ptsBra":40,"ult7":151,"atras":195,"subir":5},{"pos":19,"participante":"Yuri Belarmino","mov":2,"movText":"+2","pontos":440,"jogosPts":29,"palpiteCerteiro":3,"f2":2,"f3":6,"f4":9,"f5":9,"tudoErrado":7,"ptsBra":42,"ult7":101,"atras":206,"subir":11},{"pos":20,"participante":"Diogo","mov":2,"movText":"+2","pontos":438,"jogosPts":29,"palpiteCerteiro":3,"f2":3,"f3":4,"f4":7,"f5":12,"tudoErrado":7,"ptsBra":102,"ult7":168,"atras":208,"subir":2},{"pos":21,"participante":"William Gross","mov":-2,"movText":"-2","pontos":437,"jogosPts":31,"palpiteCerteiro":3,"f2":2,"f3":5,"f4":10,"f5":11,"tudoErrado":5,"ptsBra":52,"ult7":100,"atras":209,"subir":1},{"pos":22,"participante":"LHB","mov":11,"movText":"+11","pontos":435,"jogosPts":26,"palpiteCerteiro":3,"f2":1,"f3":6,"f4":11,"f5":5,"tudoErrado":8,"ptsBra":50,"ult7":181,"atras":211,"subir":2},{"pos":23,"participante":"José","mov":-6,"movText":"-6","pontos":433,"jogosPts":26,"palpiteCerteiro":3,"f2":2,"f3":6,"f4":8,"f5":7,"tudoErrado":10,"ptsBra":52,"ult7":83,"atras":213,"subir":2},{"pos":24,"participante":"Igão","mov":-4,"movText":"-4","pontos":433,"jogosPts":28,"palpiteCerteiro":3,"f2":3,"f3":4,"f4":10,"f5":8,"tudoErrado":8,"ptsBra":40,"ult7":81,"atras":213,"subir":0},{"pos":25,"participante":"João Gabriel","mov":0,"movText":"0","pontos":433,"jogosPts":29,"palpiteCerteiro":3,"f2":1,"f3":7,"f4":10,"f5":8,"tudoErrado":7,"ptsBra":20,"ult7":121,"atras":213,"subir":0},{"pos":26,"participante":"Viccenzo","mov":0,"movText":"0","pontos":433,"jogosPts":30,"palpiteCerteiro":2,"f2":1,"f3":8,"f4":12,"f5":7,"tudoErrado":6,"ptsBra":42,"ult7":102,"atras":213,"subir":0},{"pos":27,"participante":"Graça","mov":-12,"movText":"-12","pontos":431,"jogosPts":25,"palpiteCerteiro":4,"f2":2,"f3":3,"f4":6,"f5":10,"tudoErrado":11,"ptsBra":102,"ult7":113,"atras":215,"subir":2},{"pos":28,"participante":"Jakare","mov":-1,"movText":"-1","pontos":430,"jogosPts":30,"palpiteCerteiro":3,"f2":0,"f3":8,"f4":9,"f5":10,"tudoErrado":6,"ptsBra":40,"ult7":141,"atras":216,"subir":1},{"pos":29,"participante":"Lise","mov":10,"movText":"+10","pontos":429,"jogosPts":31,"palpiteCerteiro":4,"f2":1,"f3":4,"f4":9,"f5":13,"tudoErrado":5,"ptsBra":42,"ult7":162,"atras":217,"subir":1},{"pos":30,"participante":"Pâm","mov":-14,"movText":"-14","pontos":426,"jogosPts":31,"palpiteCerteiro":4,"f2":3,"f3":2,"f4":7,"f5":15,"tudoErrado":5,"ptsBra":52,"ult7":63,"atras":220,"subir":3},{"pos":31,"participante":"Jéssica Cavalcanti","mov":3,"movText":"+3","pontos":423,"jogosPts":25,"palpiteCerteiro":3,"f2":2,"f3":6,"f4":7,"f5":7,"tudoErrado":11,"ptsBra":52,"ult7":120,"atras":223,"subir":3},{"pos":32,"participante":"Manu Porto","mov":-8,"movText":"-8","pontos":422,"jogosPts":30,"palpiteCerteiro":3,"f2":2,"f3":3,"f4":10,"f5":12,"tudoErrado":6,"ptsBra":100,"ult7":138,"atras":224,"subir":1},{"pos":33,"participante":"Rovarinho","mov":-4,"movText":"-4","pontos":422,"jogosPts":30,"palpiteCerteiro":3,"f2":0,"f3":8,"f4":8,"f5":11,"tudoErrado":6,"ptsBra":42,"ult7":111,"atras":224,"subir":0},{"pos":34,"participante":"Alex Picolo","mov":-4,"movText":"-4","pontos":410,"jogosPts":28,"palpiteCerteiro":3,"f2":1,"f3":5,"f4":10,"f5":9,"tudoErrado":8,"ptsBra":52,"ult7":101,"atras":236,"subir":12},{"pos":35,"participante":"Jeffe","mov":6,"movText":"+6","pontos":406,"jogosPts":30,"palpiteCerteiro":2,"f2":1,"f3":8,"f4":9,"f5":10,"tudoErrado":6,"ptsBra":42,"ult7":157,"atras":240,"subir":4},{"pos":36,"participante":"Evelyn","mov":1,"movText":"+1","pontos":404,"jogosPts":28,"palpiteCerteiro":3,"f2":3,"f3":2,"f4":11,"f5":9,"tudoErrado":8,"ptsBra":40,"ult7":96,"atras":242,"subir":2},{"pos":37,"participante":"Diego Gonzatto","mov":-5,"movText":"-5","pontos":404,"jogosPts":24,"palpiteCerteiro":2,"f2":0,"f3":6,"f4":12,"f5":4,"tudoErrado":12,"ptsBra":120,"ult7":60,"atras":242,"subir":0},{"pos":38,"participante":"Sil","mov":-10,"movText":"-10","pontos":400,"jogosPts":29,"palpiteCerteiro":2,"f2":5,"f3":2,"f4":10,"f5":10,"tudoErrado":7,"ptsBra":50,"ult7":81,"atras":246,"subir":4},{"pos":39,"participante":"Comentarista Tabajara","mov":-1,"movText":"-1","pontos":400,"jogosPts":29,"palpiteCerteiro":1,"f2":2,"f3":10,"f4":7,"f5":9,"tudoErrado":7,"ptsBra":42,"ult7":101,"atras":246,"subir":0},{"pos":40,"participante":"Valéria","mov":-5,"movText":"-5","pontos":396,"jogosPts":30,"palpiteCerteiro":2,"f2":3,"f3":5,"f4":10,"f5":10,"tudoErrado":6,"ptsBra":22,"ult7":75,"atras":250,"subir":4},{"pos":41,"participante":"Xanda","mov":1,"movText":"+1","pontos":393,"jogosPts":26,"palpiteCerteiro":3,"f2":1,"f3":5,"f4":10,"f5":7,"tudoErrado":10,"ptsBra":22,"ult7":81,"atras":253,"subir":3},{"pos":42,"participante":"Guetis","mov":1,"movText":"+1","pontos":387,"jogosPts":30,"palpiteCerteiro":3,"f2":1,"f3":4,"f4":11,"f5":11,"tudoErrado":6,"ptsBra":22,"ult7":91,"atras":259,"subir":6},{"pos":43,"participante":"Mestre","mov":-3,"movText":"-3","pontos":381,"jogosPts":28,"palpiteCerteiro":4,"f2":1,"f3":4,"f4":4,"f5":15,"tudoErrado":8,"ptsBra":42,"ult7":72,"atras":265,"subir":6},{"pos":44,"participante":"Zebra","mov":3,"movText":"+3","pontos":376,"jogosPts":27,"palpiteCerteiro":4,"f2":1,"f3":2,"f4":9,"f5":11,"tudoErrado":9,"ptsBra":20,"ult7":86,"atras":270,"subir":5},{"pos":45,"participante":"Freitas","mov":5,"movText":"+5","pontos":363,"jogosPts":23,"palpiteCerteiro":2,"f2":1,"f3":6,"f4":6,"f5":8,"tudoErrado":13,"ptsBra":100,"ult7":172,"atras":283,"subir":13},{"pos":46,"participante":"Ocimar","mov":2,"movText":"+2","pontos":357,"jogosPts":27,"palpiteCerteiro":2,"f2":1,"f3":7,"f4":6,"f5":11,"tudoErrado":9,"ptsBra":42,"ult7":102,"atras":289,"subir":6},{"pos":47,"participante":"Dom Braga","mov":-1,"movText":"-1","pontos":355,"jogosPts":21,"palpiteCerteiro":3,"f2":1,"f3":4,"f4":4,"f5":9,"tudoErrado":15,"ptsBra":102,"ult7":133,"atras":291,"subir":2},{"pos":48,"participante":"Leo","mov":-4,"movText":"-4","pontos":355,"jogosPts":29,"palpiteCerteiro":1,"f2":2,"f3":5,"f4":11,"f5":10,"tudoErrado":7,"ptsBra":70,"ult7":92,"atras":291,"subir":0},{"pos":49,"participante":"Steve Wonder, o oráculo","mov":-4,"movText":"-4","pontos":355,"jogosPts":29,"palpiteCerteiro":1,"f2":1,"f3":7,"f4":11,"f5":9,"tudoErrado":7,"ptsBra":42,"ult7":81,"atras":291,"subir":0},{"pos":50,"participante":"Junior","mov":-1,"movText":"-1","pontos":353,"jogosPts":29,"palpiteCerteiro":2,"f2":3,"f3":3,"f4":8,"f5":13,"tudoErrado":7,"ptsBra":50,"ult7":100,"atras":293,"subir":2},{"pos":51,"participante":"Katia","mov":0,"movText":"0","pontos":323,"jogosPts":29,"palpiteCerteiro":1,"f2":2,"f3":5,"f4":9,"f5":12,"tudoErrado":7,"ptsBra":42,"ult7":63,"atras":323,"subir":30},{"pos":52,"participante":"Cacio","mov":0,"movText":"0","pontos":315,"jogosPts":27,"palpiteCerteiro":0,"f2":3,"f3":7,"f4":7,"f5":10,"tudoErrado":9,"ptsBra":40,"ult7":92,"atras":331,"subir":8},{"pos":53,"participante":"Tainan Dener","mov":2,"movText":"+2","pontos":301,"jogosPts":30,"palpiteCerteiro":0,"f2":3,"f3":2,"f4":15,"f5":10,"tudoErrado":6,"ptsBra":52,"ult7":126,"atras":345,"subir":14},{"pos":54,"participante":"Carla","mov":-1,"movText":"-1","pontos":290,"jogosPts":24,"palpiteCerteiro":2,"f2":0,"f3":4,"f4":9,"f5":9,"tudoErrado":12,"ptsBra":22,"ult7":62,"atras":356,"subir":11},{"pos":55,"participante":"Soveral","mov":-1,"movText":"-1","pontos":287,"jogosPts":28,"palpiteCerteiro":1,"f2":1,"f3":4,"f4":11,"f5":11,"tudoErrado":8,"ptsBra":22,"ult7":91,"atras":359,"subir":3}];
+const featuredHighlights = [{"ordem":16,"tipo":"positivo","titulo":"Em Alta (7 jogos)","participantes":"Emerson FC e Mattana","valor":"221 pts nos últimos 7 jogos","subvalor":"Últimos 7 jogos","criterio":"Maior pontuação nos últimos 7 jogos realizados"},{"ordem":12,"tipo":"positivo","titulo":"Arrancada da Rodada","participantes":"Ildecler","valor":"Subiu 19 posições","subvalor":"Movimento no ranking","criterio":"Maior subida de posições desde a rodada anterior"},{"ordem":4,"tipo":"positivo","titulo":"Pontua Sempre","participantes":"Dudasccp","valor":"33/36","subvalor":"92% de regularidade","criterio":"Jogos pontuados / jogos realizados"}];
+const otherHighlights = [{"ordem":2,"tipo":"positivo","titulo":"Mira Calibrada","participantes":"Tercio Baiano","valor":"8 placares exatos","subvalor":"Faixa 1","criterio":"Maior nº de placares exatos"},{"ordem":5,"tipo":"positivo","titulo":"Artilheiro do Vencedor","participantes":"Sil","valor":"5 acertos","subvalor":"Faixa 2","criterio":"Maior nº de acertos na Faixa 2"},{"ordem":6,"tipo":"positivo","titulo":"Leitor do Jogo","participantes":"Emerson FC","valor":"11 acertos","subvalor":"Faixa 3","criterio":"Maior nº de acertos na Faixa 3"},{"ordem":7,"tipo":"positivo","titulo":"Bússola do Resultado","participantes":"Tainan Dener","valor":"15 acertos","subvalor":"Faixa 4","criterio":"Maior nº de acertos na Faixa 4"},{"ordem":9,"tipo":"positivo","titulo":"Líder Jogos do Brasil","participantes":"Moisés e Diego Gonzatto","valor":"120 pts BRA","subvalor":"Brasil","criterio":"Maior pontuação em jogos do Brasil"},{"ordem":11,"tipo":"negativo","titulo":"Lanterna","participantes":"Soveral","valor":"287 pts","subvalor":"Última posição","criterio":"Menor pontuação total entre quem pontuou"},{"ordem":14,"tipo":"positivo","titulo":"Muralha","participantes":"Dudasccp","valor":"3 jogos tudo errado","subvalor":"Menos zerados","criterio":"Menos jogos com tudo errado, entre quem palpitou todos os jogos realizados"},{"ordem":15,"tipo":"positivo","titulo":"Modo Turbo","participantes":"Ildecler","valor":"95 pts nos últimos 3 jogos","subvalor":"Últimos 3 jogos","criterio":"Maior pontuação nos últimos 3 jogos realizados"}];
+const podiumData = [{"pos":1,"participante":"Tercio Baiano","mov":1,"movText":"+1","pontos":646,"jogosPts":29,"palpiteCerteiro":8,"f2":0,"f3":7,"f4":8,"f5":6,"tudoErrado":7,"ptsBra":40,"ult7":160,"atras":0,"subir":0},{"pos":2,"participante":"Otavio","mov":-1,"movText":"-1","pontos":602,"jogosPts":31,"palpiteCerteiro":7,"f2":2,"f3":6,"f4":5,"f5":11,"tudoErrado":5,"ptsBra":42,"ult7":92,"atras":44,"subir":44},{"pos":3,"participante":"Emerson FC","mov":1,"movText":"+1","pontos":580,"jogosPts":30,"palpiteCerteiro":5,"f2":0,"f3":11,"f4":5,"f5":9,"tudoErrado":6,"ptsBra":102,"ult7":221,"atras":66,"subir":22}];
 
 const collator = new Intl.Collator('pt-BR', { numeric:true, sensitivity:'base' });
 let currentSort = 'pontos';
 let sortDir = -1;
-const textKeys = new Set(['participante','participacao']);
-const descendingDefault = new Set(['pontos','mov','jogosPts','f1','f2','f3','f4','f5','f6','ptsBra','ult7']);
+const textKeys = new Set(['participante']);
+const descendingDefault = new Set(['pontos','mov','jogosPts','palpiteCerteiro','f2','f3','f4','f5','tudoErrado','ptsBra','ult7']);
 
 function esc(value) {
   return String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
@@ -223,10 +244,16 @@ function filteredRows() {
   const base = q ? rankingData.filter(r => normalizeSearch(r.participante).includes(q)) : rankingData;
   return sortRows(base);
 }
+function cardClass(h, i) {
+  if (i === 0) return 'featured';
+  if (i === 1) return 'blue';
+  if (i === 2) return 'good';
+  return 'purple';
+}
 function renderFeatured() {
   const el = document.getElementById('featuredGrid');
-  el.innerHTML = featuredHighlights.map(h => `
-    <article class="card featured">
+  el.innerHTML = featuredHighlights.map((h, i) => `
+    <article class="card ${cardClass(h, i)}">
       <div class="label">${esc(h.titulo)}</div>
       <div class="value">${esc(h.participantes)}</div>
       <div class="note">${esc(h.valor)}</div>
@@ -256,25 +283,22 @@ function renderRanking() {
   document.getElementById('emptyState').style.display = rows.length ? 'none' : 'block';
   document.getElementById('rankingBody').innerHTML = rows.map(r => `
     <tr>
-      <td>${medal(r.pos)}</td><td><div class="participant">${esc(r.participante)}</div></td><td>${movement(r.mov)}</td><td class="points">${r.pontos}</td>
-      <td>${r.jogosPts}</td><td><span class="tag">${r.f1}</span></td><td><span class="tag">${r.f2}</span></td><td><span class="tag">${r.f3}</span></td><td><span class="tag">${r.f4}</span></td><td><span class="tag">${r.f5}</span></td><td><span class="tag">${r.f6}</span></td>
-      <td>${r.ptsBra}</td><td>${r.ult7}</td><td>${r.atras}</td><td>${r.subir}</td><td>${esc(r.participacao)}</td>
+      <td>${medal(r.pos)}</td>
+      <td><div class="participant" title="${esc(r.participante)}">${esc(r.participante)}</div></td>
+      <td>${movement(r.mov)}</td>
+      <td class="points">${r.pontos}</td>
+      <td>${r.jogosPts}</td>
+      <td><span class="tag">${r.palpiteCerteiro}</span></td>
+      <td><span class="tag">${r.f2}</span></td>
+      <td><span class="tag">${r.f3}</span></td>
+      <td><span class="tag">${r.f4}</span></td>
+      <td><span class="tag">${r.f5}</span></td>
+      <td><span class="tag">${r.tudoErrado}</span></td>
+      <td>${r.ptsBra}</td>
+      <td>${r.ult7}</td>
+      <td>${r.atras}</td>
+      <td>${r.subir}</td>
     </tr>`).join('');
-  document.getElementById('mobileList').innerHTML = rows.map(r => `
-    <article class="mobile-card">
-      <div class="mobile-head">
-        <div><div class="mobile-pos">${r.pos}º lugar</div><div class="mobile-name">${esc(r.participante)}</div>${movement(r.mov)}</div>
-        <div class="mobile-points">${r.pontos} pts</div>
-      </div>
-      <div class="mini">
-        <div><span>Jogos c/ pts</span><strong>${r.jogosPts}</strong></div>
-        <div><span>Palpite certeiro</span><strong>${r.f1}</strong></div>
-        <div><span>Últ. 7</span><strong>${r.ult7}</strong></div>
-        <div><span>Pts BRA</span><strong>${r.ptsBra}</strong></div>
-        <div><span>Tudo errado</span><strong>${r.f6}</strong></div>
-        <div><span>P/ subir</span><strong>${r.subir}</strong></div>
-      </div>
-    </article>`).join('');
 }
 
 document.getElementById('search').addEventListener('input', renderRanking);
