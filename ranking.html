@@ -191,11 +191,10 @@ th:first-child,th:nth-child(2){z-index:4;background:#eaf3ff}
 
 <section>
   <div class="section-title">
-    <div><h2>Outros destaques</h2><p>Demais destaques do bolão, exibidos após a classificação para não saturar o topo. As categorias já exibidas acima não são repetidas aqui.</p></div>
+    <div><h2>Outros destaques</h2></div>
   </div>
   <div class="high-grid" id="otherHighlights"></div>
 </section>
-<div class="footer">Arquivo HTML autônomo, sem bibliotecas externas e sem scripts de terceiros.</div>
 </div>
 
 <script>
@@ -235,8 +234,8 @@ function sortRows(rows) {
     let cmp;
     if (textKeys.has(key)) cmp = collator.compare(String(a[key] ?? ''), String(b[key] ?? ''));
     else cmp = (Number(a[key]) || 0) - (Number(b[key]) || 0);
-    if (cmp === 0) cmp = (Number(a.pos)||0) - (Number(b.pos)||0);
-    return cmp * dir;
+    if (cmp !== 0) return cmp * dir;
+    return (Number(a.pos)||0) - (Number(b.pos)||0);
   });
 }
 function filteredRows() {
